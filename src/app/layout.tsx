@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
+    <html lang="en" style={{ scrollBehavior: 'smooth', maxWidth: '100vw' }}>
       <body className={roboto.className}>{children}</body>
     </html>
 

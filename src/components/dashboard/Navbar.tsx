@@ -36,7 +36,7 @@ const Navbar = () => {
     const { data: Session } = useSession()
 
     return (
-        <div className='bg-[#1E2229] flex flex-col items-center text-white rounded-xl shadow-xl p-7 divide-y divide-gray-500 fixed mr-10 md:mr-0' >
+        <div className='bg-[#1E2229] flex flex-col items-center text-white rounded-xl shadow-xl p-7 divide-y divide-gray-500 fixed mr-10 md:mr-0 z-50' >
 
             <div className=' mb-5 w-full bg-[#DD8233] px-2 rounded-xl shadow-lg '>
                 <Link href={'/dashboard'} className='flex flex-row items-center py-1 gap-2'>
