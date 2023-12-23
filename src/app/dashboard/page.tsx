@@ -1,8 +1,14 @@
+import { getServerSession } from 'next-auth'
 import React from 'react'
+import { options } from '../api/auth/[...nextauth]/options'
+import Image from 'next/image'
 
-const page = () => {
+const page = async () => {
   return (
-    <div>page</div>
+    <div>
+      dashboard
+    </div>
+
   )
 }
 
