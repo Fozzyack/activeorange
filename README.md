@@ -8,9 +8,9 @@
 # Features - Implemented but not finished
 - [x] Landing Page
 - [x] Sign in
-- [ ] Navbar
-- [ ] Add Lift
-- [ ] Display Lifts
+- [x] Navbar
+- [x] Add Lift -- End of Day 1
+- [ ] Display Lifts (ChartJS)
 - [ ] Socials
 
 ## Main Tech Stack
