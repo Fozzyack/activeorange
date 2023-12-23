@@ -1,9 +1,10 @@
 <div align='center'>
-  <h2>JapApp</h2>
+  <h2>Active Orange</h2>
   <p>An app to help language students learn Japanese</p>
 </div>
 
-![HeroImage](gitimgs/Login-Bg.png)
+![HeroImage](public/icon.png)
+![AboutImage](public/AboutImage.jpg)
 
 # Features - Implemented but not finished
 - [x] Landing Page
@@ -11,7 +12,7 @@
 - [ ] Navbar
 - [ ] Add Lift
 - [ ] Display Lifts
-- [ ] Social Component
+- [ ] Socials
 
 ## Main Tech Stack
 * [![NextJs](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
