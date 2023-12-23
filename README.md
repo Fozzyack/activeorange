@@ -1,6 +1,6 @@
 <div align='center'>
   <h2>Active Orange</h2>
-  <p>An app to help language students learn Japanese</p>
+  <p>A fitness tracker app that will help me track my gym lifts</p>
 </div>
 
 ![AboutImage](public/HeroImage.png)
