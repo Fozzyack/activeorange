@@ -11,7 +11,7 @@
 - [x] Navbar
 - [x] Add Lift -- End of Day 1
 - [ ] Display Lifts (ChartJS)
-- [ ] Socials
+- [ ] Design a calorie tracker (Very simple)
 
 ## Main Tech Stack
 * [![NextJs](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
