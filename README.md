@@ -3,7 +3,6 @@
   <p>An app to help language students learn Japanese</p>
 </div>
 
-![HeroImage](public/icon.png)
 ![AboutImage](public/HeroImage.png)
 
 # Features - Implemented but not finished
