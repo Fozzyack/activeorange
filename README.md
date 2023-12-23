@@ -4,7 +4,7 @@
 </div>
 
 ![HeroImage](public/icon.png)
-![AboutImage](public/AboutImage.jpg)
+![AboutImage](public/HeroImage.png)
 
 # Features - Implemented but not finished
 - [x] Landing Page
