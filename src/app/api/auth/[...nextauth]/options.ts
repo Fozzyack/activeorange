@@ -4,7 +4,13 @@ import GithubProvider from "next-auth/providers/github";
 import { pool } from "@/utils/db";
 import { Adapter } from "next-auth/adapters";
 
-export const options : NextAuthOptions = {
+interface ExtendedUserSession {
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+    id?: string | null | undefined;
+}
+export const options: NextAuthOptions = {
     adapter: PostgresAdapter(pool) as Adapter,
     providers: [
         GithubProvider({
@@ -14,5 +20,11 @@ export const options : NextAuthOptions = {
                 timeout: 40000
             }
         }),
-    ]
+    ],
+    callbacks: {
+        async session({ session, user }) {
+            (session.user as ExtendedUserSession).id = user.id
+            return session
+        }
+    }
 }

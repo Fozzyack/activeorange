@@ -9,6 +9,8 @@ const page = ({ params }: { params: { exerciseId: number } }) => {
     const [date, setDate] = React.useState(new Date())
     const [sets, setSets] = React.useState(0)
     const [reps, setReps] = React.useState(0)
+    const [rpe, setRpe] = React.useState(0)
+    const [log, setLog] = React.useState('')
     const [weight, setWeight] = React.useState(0)
     
     const handleSets = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +22,12 @@ const page = ({ params }: { params: { exerciseId: number } }) => {
     const handleWeights = (e: React.ChangeEvent<HTMLInputElement>) => {
         setWeight(Math.round(parseFloat(e.target.value) * 100) / 100)
     }
+    const handleRPE = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setRpe(Math.round(parseInt(e.target.value)))
+    }
+    const handleLog = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setLog(e.target.value)
+    }
 
     const sendData = async () =>{
         const res = await fetch('/api/weights/exercises/uploadexercise', {
@@ -30,7 +38,9 @@ const page = ({ params }: { params: { exerciseId: number } }) => {
                 sets: sets,
                 reps: reps,
                 weight: weight,
-                date: date
+                date: date,
+                rpe: rpe,
+                log: log
             })
         })
         if (!res.ok) {
@@ -62,14 +72,20 @@ const page = ({ params }: { params: { exerciseId: number } }) => {
                         <label > Weight: </label>
                         <input className='px-4 py-1 text-black rounded-xl' type="number"  value={weight} onChange={(e) => {handleWeights(e)}}/>
                     </div>
+                    <div className='flex flex-col w-[200px]'>
+                        <label > RPE: </label>
+                        <input className='px-4 py-1 text-black rounded-xl' type="number"  value={rpe} onChange={(e) => {handleRPE(e)}}/>
+                    </div>
+                    <div className='flex flex-col w-[200px]'>
+                        <label > Log: </label>
+                        <textarea className='px-4 py-1 text-black rounded-xl'  value={log} onChange={(e) => {handleLog(e)}}/>
+                    </div>
                     <div className='flex flex-col w-full '>
                         <label > Date: </label>
                         <div className='text-black'>
                             <DatePicker selected={date} onChange={(date: any) => { setDate(date) }} className='p-2 rounded-full' />
                         </div>
-
                     </div>
-
                 </div>
                 <button type='submit' className='mt-2 bg-gradient-to-r py-2 px-3 from-[#F18828] to-[#d60d1e] rounded-xl w-[120px]'>Submit</button>
             </form>

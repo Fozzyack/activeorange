@@ -1,14 +1,27 @@
 'use client'
-import Link from 'next/link'
 import React from 'react'
 
-const ExerciseList = () => {
+interface exercises {
+    e_name: string,
+    m_name: string,
+    id: number
+}
 
-    const [exercises, setExercises] = React.useState([{
-        e_name: '',
-        m_name: '',
-        id: null
-    }])
+interface ExerciseComponentProps {
+    selectedExercises: {
+        name: string;
+        id: number;
+    }[];
+    setSelectedExercises: React.Dispatch<React.SetStateAction<{
+        name: string;
+        id: number;
+    }[]>>;
+}
+
+const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComponentProps) => {
+
+    const [exercises, setExercises] = React.useState<exercises[]>([])
+    const [allExercises, setAllExercises] = React.useState<exercises[]>([])
     const [tableIndex, setTableIndex] = React.useState({
         start: 0,
         finish: 10
@@ -40,15 +53,41 @@ const ExerciseList = () => {
             throw new Error('There was an error getting the exercise List')
         }
 
-        setExercises(await res.json())
-
+        const data  = await res.json()
+        setExercises(data)
+        setAllExercises( data)
     }
 
+
+    const selectExercise = (name: string, id: number) => {
+        const newExercises = { name, id }
+        setSelectedExercises(prevState => {
+            return [...prevState, newExercises]
+        })
+    }
+
+    React.useEffect(() => {
+
+        setExercises(() => {
+
+            const id_list = selectedExercises.map(exercise => exercise.id)
+            return allExercises.filter(exercise => {
+                var add = true
+                for (var i = 0; i < id_list.length; i++) {
+                    if (id_list[i] === exercise.id) {
+                        add = false;
+                    }
+                } if (add === true) {
+                    return exercise
+                }
+            })
+        })
+
+    }, [selectedExercises])
 
     React.useEffect(() => {
         getExercises()
     }, [])
-
     return (
         <div className='text-white'>
             <div className='flex flex-row gap-4 mb-5 w-full flex-wrap'>
@@ -57,7 +96,7 @@ const ExerciseList = () => {
                     tableIndex.start != 0 ? <button onClick={() => { goBack() }}>Back</button> : null
                 }
                 {
-                    tableIndex.finish <= exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1)) || exercise.m_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).length - 1 ? <button onClick={() => { goForward() }}>Forward</button> : null
+                    tableIndex.finish <= exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).length - 1 ? <button onClick={() => { goForward() }}>Forward</button> : null
                 }
 
             </div>
@@ -65,18 +104,16 @@ const ExerciseList = () => {
                 <thead>
                     <tr>
                         <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Exercise Name</th>
-                        <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Muscle Group</th>
                         <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Select</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1)) || exercise.m_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
+                        exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
                             <tr className='text-white'>
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
-                                <td className='table-cell border border-slate-700 p-2'>{exercise.m_name}</td>
                                 <td className='flex border border-slate-700 p-2 justify-center items-center'>
-                                    <Link className='bg-red-500 p-2 rounded-lg' href={`/dashboard/record/${exercise.id}`}>Select</Link></td>
+                                    <button className='bg-red-500 p-2 rounded-lg' onClick={() => { selectExercise(exercise.e_name, exercise.id) }}>Select</button></td>
                             </tr>
                         ))
                     }
@@ -87,4 +124,4 @@ const ExerciseList = () => {
     )
 }
 
-export default ExerciseList
+export default ExerciseTable
