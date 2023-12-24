@@ -12,6 +12,7 @@
 - [x] Add Lift -- End of Day 1
 - [x] Display Lifts (ChartJS)
 - [ ] Clean up code (Alter api calls after session object change)
+- [ ] Create Custom Login Page
 - [ ] Beautify UI - Add images, Propper buttons and add animations
 - [ ] Design a calorie tracker (Very simple)
 
