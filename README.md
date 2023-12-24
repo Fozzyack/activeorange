@@ -10,7 +10,7 @@
 - [x] Sign in
 - [x] Navbar
 - [x] Add Lift -- End of Day 1
-- [x] Display Lifts (ChartJS)
+- [x] Display Lifts (ChartJS) -- End of Day 2
 - [ ] Clean up code (Alter api calls after session object change)
 - [ ] Create Custom Login Page
 - [ ] Beautify UI - Add images, Propper buttons and add animations
