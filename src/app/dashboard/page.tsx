@@ -1,12 +1,11 @@
-import { getServerSession } from 'next-auth'
+import RecentlyRecorded from '@/components/dashboard/RecentlyRecorded'
 import React from 'react'
-import { options } from '../api/auth/[...nextauth]/options'
-import Image from 'next/image'
 
 const page = async () => {
+  
   return (
-    <div>
-      dashboard
+    <div className='flex'>
+      <RecentlyRecorded />
     </div>
 
   )

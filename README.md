@@ -4,9 +4,8 @@
 </div>
 
 ![AboutImage](public/HeroImage.png)
-# Errors While building
-Will have to refactor currently build code (End of Day 3). Needed to have decided if to build a RESTful API or to have server side rendering. Whilst the app is currently built using REST I have decided to use Server Side Rendering.
-**Reason**: I want to learn and experiment with some server side rendering features. It still doesn't feel right to be querying the database in a react component.
+# Thoughts while building
+Have only made apps with RESTful APIs. Whilst this app will mostly be RESTful, I need to learn Server Side Rendering. Therefore, some of this app while be done using RESTful (nextjs  route handlers) and others will be done using Server Side Rendering 
 # Features - Implemented but not finished
 - [x] Landing Page
 - [x] Sign in
