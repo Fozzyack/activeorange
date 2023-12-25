@@ -4,7 +4,9 @@
 </div>
 
 ![AboutImage](public/HeroImage.png)
-
+# Errors While building
+Will have to refactor currently build code (End of Day 3). Needed to have decided if to build a RESTful API or to have server side rendering. Whilst the app is currently built using REST I have decided to use Server Side Rendering.
+**Reason**: I want to learn and experiment with some server side rendering features. It still doesn't feel right to be querying the database in a react component.
 # Features - Implemented but not finished
 - [x] Landing Page
 - [x] Sign in
@@ -13,6 +15,7 @@
 - [x] Display Lifts (ChartJS) -- End of Day 2
 - [x] Clean up code (Alter api calls after session object change)
 - [x] Create Custom Login Page
+- [ ] Create a Settings Page
 - [ ] Design A main dashboard component
 - [ ] Beautify UI - Add images, Propper buttons and add animations (Spruce up landing page)
 - [ ] Design a calorie tracker (Very simple)

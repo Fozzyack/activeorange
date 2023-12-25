@@ -7,6 +7,7 @@ import Link from 'next/link'
 
 const LINKS = [
     {
+        id: 1,
         name: 'Record',
         href: '/dashboard/record',
         image:
@@ -32,6 +33,7 @@ const LINKS = [
             </svg>
     },
     {
+        id: 2,
         name: 'Review',
         href: '/dashboard/review',
         image: <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
@@ -41,12 +43,12 @@ const LINKS = [
 ]
 const Navbar = () => {
     const { data: Session } = useSession()
-
+    const [selected, setSelected] = React.useState<number | null>(null)
     return (
         <div className='bg-[#1E2229] flex flex-col items-center text-white rounded-xl shadow-xl p-7 divide-y divide-gray-500 fixed mr-10 md:mr-0 z-50' >
 
-            <div className=' mb-5 w-full bg-[#DD8233] px-2 rounded-xl shadow-lg '>
-                <Link href={'/dashboard'} className='flex flex-row items-center py-1 gap-2'>
+            <div className=' mb-5 w-full bg-[#DD8233] hover:bg-[#7a512d] px-2 rounded-xl shadow-lg '>
+                <Link onClick={() => setSelected(null)} href={'/dashboard'} className='flex flex-row items-center py-1 gap-2'>
                     <div className='shadow-lg rounded-xl'>
                         <Image src='/icon.png' alt='Logo' width={64} height={64} />
                     </div>
@@ -63,7 +65,7 @@ const Navbar = () => {
                 <div className='my-5 flex flex-col gap-4'>
                     {
                         LINKS.map((link, index) => (
-                            <NavLink link={link} key={index} />
+                            <NavLink link={link} key={index} selected={selected} setSelected={setSelected}/>
                         ))
                     }
                 </div>
@@ -71,13 +73,13 @@ const Navbar = () => {
             </div>
             <div className='w-full '>
                 <div className='my-5 flex justify-center flex-col md:flex-row gap-4 text-center'>
-                    <Link href={'/api/auth/signout'} className=' border border-[#F68E31] text-[#F68E31] px-2 py-2 rounded-xl'>
-                        <div className=' bg-'>
+                    <Link href={'/api/auth/signout'} className=' border border-[#F68E31] text-[#F68E31] hover:bg-[#F68E31] hover:text-black px-2 py-2 rounded-xl'>
+                        <div >
                             Sign Out
                         </div>
                     </Link>
-                    <Link href={''}>
-                        <div className=' border border-[#F68E31] text-[#F68E31] px-2 py-2 rounded-xl'>
+                    <Link href={'/dashboard/settings'}>
+                        <div className=' border border-[#F68E31] text-[#F68E31] hover:bg-[#F68E31] hover:text-black px-2 py-2 rounded-xl'>
                             Settings
                         </div>
                     </Link>
