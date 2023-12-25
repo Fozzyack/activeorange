@@ -5,7 +5,7 @@
 
 ![AboutImage](public/HeroImage.png)
 # Thoughts while building
-Have only made apps with RESTful APIs. Whilst this app will mostly be RESTful, I need to learn Server Side Rendering. Therefore, some of this app while be done using RESTful (nextjs  route handlers) and others will be done using Server Side Rendering 
+Have only made apps with RESTful APIs. Whilst this app will mostly be RESTful, I need to learn Server Side Rendering. Therefore, some of this app while be done using RESTful (nextjs  route handlers) and others will be done using Server Side Rendering. However, I may also just end up to sticking to Nextjs' recommended way to use client and server components as well as their "Server / Client Component Patterns".
 # Features - Implemented but not finished
 - [x] Landing Page
 - [x] Sign in
