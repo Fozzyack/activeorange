@@ -6,6 +6,8 @@ import {
     Tooltip,
     PointElement,
     LineElement,
+    Legend,
+    Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -15,7 +17,8 @@ ChartJS.register(
     LinearScale,
     PointElement,
     LineElement,
-    Tooltip
+    Tooltip,
+    Legend
 );
 import React from "react";
 
@@ -27,7 +30,7 @@ interface data {
     log: string,
     date_recorded: string
 }
-const ExerciseChart = ({ id, }: { id: number }) => {
+const ExerciseChart = ({ id}: { id: number }) => {
 
     const [data, setData] = React.useState<data[]>([])
     const getData = async () => {
@@ -51,7 +54,8 @@ const ExerciseChart = ({ id, }: { id: number }) => {
             <div >
                 <h4 className="text-center text-white font-bold text-lg py-3">Weight Graph</h4>
                 <Line
-                    className="bg-white p-1 rounded-xl"
+                    className="p-1 rounded-xl bg-slate-800"
+                    
                     data={{
                         labels: data.map(entree => new Date(Date.parse(entree.date_recorded)).toLocaleDateString()),
                         datasets: [
@@ -59,15 +63,16 @@ const ExerciseChart = ({ id, }: { id: number }) => {
                                 label: 'Weight',
                                 data: data.map(entree => entree.weight),
                                 backgroundColor: "purple",
+                                borderColor: 'purple',
                             },
                         ],
                     }}
                 />
             </div>
             <div>
-                <h4 className="text-center text-white font-bold text-lg py-3">Sets Reps And RPE Graph</h4>
+                <h4 className="text-center text-white font-bold text-lg py-3 ">Sets Reps And RPE Graph</h4>
                 <Line
-                    className="bg-white p-1 rounded-xl"
+                    className=" p-1 rounded-xl bg-slate-800"
                     data={{
 
                         labels: data.map(entree => new Date(Date.parse(entree.date_recorded)).toLocaleDateString()),
@@ -76,17 +81,19 @@ const ExerciseChart = ({ id, }: { id: number }) => {
                                 label: "Sets",
                                 data: data.map(entree => entree.sets.toString()),
                                 backgroundColor: "green",
-                                borderColor: '#FFFFFF'
+                                borderColor: 'green'
                             },
                             {
                                 label: "Reps",
                                 data: data.map(entree => entree.reps.toString()),
                                 backgroundColor: "blue",
+                                borderColor: 'blue'
                             },
                             {
                                 label: "RPE",
                                 data: data.map(entree => entree.rpe.toString()),
                                 backgroundColor: "red",
+                                borderColor: 'red'
                             },
                         ],
                     }}

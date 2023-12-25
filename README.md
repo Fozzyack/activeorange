@@ -11,9 +11,10 @@
 - [x] Navbar
 - [x] Add Lift -- End of Day 1
 - [x] Display Lifts (ChartJS) -- End of Day 2
-- [ ] Clean up code (Alter api calls after session object change)
-- [ ] Create Custom Login Page
-- [ ] Beautify UI - Add images, Propper buttons and add animations
+- [x] Clean up code (Alter api calls after session object change)
+- [x] Create Custom Login Page
+- [ ] Design A main dashboard component
+- [ ] Beautify UI - Add images, Propper buttons and add animations (Spruce up landing page)
 - [ ] Design a calorie tracker (Very simple)
 
 ## Main Tech Stack
