@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth/pg-adapter": "^0.2.10",
     "chart.js": "^4.4.1",
+    "framer-motion": "^10.16.16",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "nodemailer": "^6.9.7",

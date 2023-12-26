@@ -1,60 +1,76 @@
-'use client'
-import React, { useEffect } from 'react'
 
-interface Records {
-    sets: number,
-    reps: number,
-    weight: string,
-    rpe: number,
-    name: string
+import { options } from '@/app/api/auth/[...nextauth]/options'
+import { pool } from '@/utils/db'
+import { Session, getServerSession } from 'next-auth'
+import React from 'react'
+
+interface ExtendedUserSession extends Session {
+    user?: {
+        id?: string | null | undefined,
+        name?: string | null | undefined,
+        image?: string | null | undefined,
+        email?: string | null | undefined,
+    } | undefined
 }
-const RecentlyRecorded = () => {
 
-    const [records, setRecords] = React.useState<Records[]>([]);
-    const getrecorded = async () => {
-        fetch('/api/weights/getrecent', {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
-        }).then(async (res) => {
-            if (!res.ok) {
-                throw new Error('There was an error getting data')
-            }
-            setRecords(await res.json())
-        })
+async function getRecords() {
+    try {
+
+        const session = await getServerSession(options) as ExtendedUserSession
+        const sql = `SELECT sets, reps, weight, rpe, name FROM record_weight JOIN exercises_weight ON exercises_weight.id=record_weight."exerciseId" WHERE "userId"=$1 ORDER BY date_recorded DESC LIMIT 20`
+        const response = await pool.query(sql, [session.user?.id])
+        return {
+            error: null,
+            data: response.rows
+        };
+
+    } catch (error) {
+        console.log(error)
+        const payload = {
+            error: error,
+            data: []
+        }
+        return payload
     }
+}
 
-    React.useEffect(() => {
-        getrecorded()
-    }, [])
-
-    console.log(records)
+const RecentlyRecorded = async () => {
+    const records = await getRecords()
     return (
-        <div className='flex  w-full '>
-            <table className='text-white table-auto bg-slate-800 border-collapse border border-slate-400 border-spacing-2 w-[25%]'>
-                <thead>
-                    <tr>
-                        <th className='border border-slate-400'>Name</th>
-                        <th className='border border-slate-400'>Sets</th>
-                        <th className='border border-slate-400'>Reps</th>
-                        <th className='border border-slate-400'>Weight</th>
-                        <th className='border border-slate-400'>RPE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        records.map((record, index) => (
-                            <tr>
-                                <td className=' p-1 border border-slate-400'>{record.name}</td>
-                                <td className='p-1  border border-slate-400' >{record.sets}</td>
-                                <td className='p-1  border border-slate-400'>{record.reps}</td>
-                                <td className='p-1  border border-slate-400'>{record.weight}</td>
-                                <td className='p-1  border border-slate-400'>{record.rpe}</td>
-                            </tr>
+        <div className='flex flex-col items-center p-4 bg-[#DD8233] rounded-xl shadow-xl gap-4'>
+            <h1 className='bg-[#1E2229] rounded-full text-white px-4 py-3 shadow-xl'> Recently Recorded</h1>
+            {
+                records.error ? <div>
+                    <p>There was An Error Fetching the Data</p>
+                </div> :
 
-                        ))
-                    }
-                </tbody>
-            </table>
+                    <table className='text-white table-auto bg-slate-800 border-collapse border-spacing-2 w-[25%] rounded-3xl'>
+                        <thead>
+                            <tr>
+                                <th className='p-3 border-r border-slate-400'>Name</th>
+                                <th className='p-3 border-r border-slate-400'>Sets</th>
+                                <th className='p-3 border-r border-slate-400'>Reps</th>
+                                <th className='p-3 border-r border-slate-400'>Weight</th>
+                                <th className='p-3 border-l border-slate-400'>RPE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                records.data.map((record, index) => (
+                                    <tr>
+                                        <td className='p-1 border-r border-t border-slate-400 '>{record.name}</td>
+                                        <td className='p-1  border border-slate-400' >{record.sets}</td>
+                                        <td className='p-1  border border-slate-400'>{record.reps}</td>
+                                        <td className='p-1  border border-slate-400'>{record.weight}</td>
+                                        <td className='p-1  border-l border-t border-slate-400'>{record.rpe}</td>
+                                    </tr>
+
+                                ))
+                            }
+                        </tbody>
+                    </table>
+            }
+
         </div>
     )
 }

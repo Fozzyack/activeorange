@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-
+import { motion } from 'framer-motion'
 interface exercises {
     e_name: string,
     m_name: string,
@@ -118,11 +118,16 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                 <tbody>
                     {
                         exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
-                            <tr className='text-white'>
+
+                            <motion.tr className='text-white'
+                                initial={{opacity: 0, x:-200}}
+                                animate={{opacity: 1, x: 0}}
+                                transition={{delay: 0.3 * index}}
+                                >
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
                                 <td className='flex border border-slate-700 p-2 justify-center items-center'>
                                     <button className='bg-red-500 p-2 rounded-lg' onClick={() => { selectExercise(exercise.e_name, exercise.id) }}>Select</button></td>
-                            </tr>
+                            </motion.tr>
                         ))
                     }
                 </tbody>

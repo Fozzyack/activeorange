@@ -2,7 +2,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import { SessionProvider } from 'next-auth/react'
-
+import { motion } from 'framer-motion'
 const NavbarWrapper = () => {
     const [showNav, setShowNav] = React.useState(false)
 
@@ -10,7 +10,10 @@ const NavbarWrapper = () => {
         setShowNav(prev => !prev)
     }
     return (
-        <div>
+        <motion.div
+            initial={{opacity: 0, y:200}}
+            animate={{opacity: 1, y:0}}
+            >
             <SessionProvider>
                 <div className='hidden md:block'>
                     <Navbar />
@@ -43,7 +46,7 @@ const NavbarWrapper = () => {
                 </div>
 
             </SessionProvider>
-        </div>
+        </motion.div>
     )
 }
 

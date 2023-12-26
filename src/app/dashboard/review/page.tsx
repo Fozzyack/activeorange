@@ -16,8 +16,8 @@ const page = () => {
         })
     }
     return (
-
         <div className='flex flex-col gap-4 w-full'>
+            <h1 className='text-4xl text-white underline'>Select Exercise to View</h1>
             <div className=' p-4 bg-slate-800  roudned-xl'>
                 <ExerciseTable setSelectedExercises={setSelectedExercises} selectedExercises={selectedExercises} />
             </div>
