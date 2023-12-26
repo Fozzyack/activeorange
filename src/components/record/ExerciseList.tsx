@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React from 'react'
-
+import { motion } from 'framer-motion'
 const ExerciseList = () => {
 
     const [exercises, setExercises] = React.useState([{
@@ -14,21 +14,38 @@ const ExerciseList = () => {
         finish: 10
     })
     const [search, setSearch] = React.useState('')
+    const [showRows, setShowRows] = React.useState<string>('show')
+    const tr = {
+        hidden: { x: -200, opacity: 0 },
+        show: { x: 0, opacity: 1 },
+    }
 
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setShowRows('hidden')
         setSearch(e.target.value)
         setTableIndex(previousState => { return { ...previousState, start: 0, finish: 10 } })
+        setTimeout(() => {
+            setShowRows('show')
+        }, 1100)
     }
     const goForward = () => {
+        setShowRows('hidden')
         setTableIndex(prevState => { return { ...prevState, start: prevState.start + 10, finish: prevState.finish + 10 } })
+        setTimeout(() => {
+            setShowRows('show')
+        }, 1100)
     }
     const goBack = () => {
+        setShowRows('hidden')
         if (tableIndex.start - 10 <= 0) {
             setTableIndex(prevState => ({ ...prevState, start: 0, finish: 10 }))
         } else {
             setTableIndex(prevState => ({ ...prevState, start: prevState.start - 10, finish: prevState.finish - 10 }))
         }
+        setTimeout(() => {
+            setShowRows('show')
+        }, 1100)
 
     }
 
@@ -78,12 +95,17 @@ const ExerciseList = () => {
                 <tbody>
                     {
                         exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1)) || exercise.m_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
-                            <tr className='text-white'>
+                            <motion.tr
+                                initial={{ opacity: 0, x: -200 }}
+                                animate={showRows}
+                                variants={tr}
+                                transition={{ delay: 0.1 * index }}
+                                className='text-white'>
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.m_name}</td>
                                 <td className='flex border border-slate-700 p-2 justify-center items-center'>
                                     <Link className='bg-red-500 p-2 rounded-lg' href={`/dashboard/record/${exercise.id}`}>Select</Link></td>
-                            </tr>
+                            </motion.tr>
                         ))
                     }
                 </tbody>

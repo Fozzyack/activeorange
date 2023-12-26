@@ -9,11 +9,17 @@ const NavbarWrapper = () => {
     const handleOpenClose = () => {
         setShowNav(prev => !prev)
     }
+
+    const navVar = {
+        hidden: {opacity: 0, y:-1000},
+        show: {opacity: 1, y:0}
+
+    }
     return (
         <motion.div
-            initial={{opacity: 0, y:200}}
-            animate={{opacity: 1, y:0}}
-            >
+            initial={{ opacity: 0, y: 200 }}
+            animate={{ opacity: 1, y: 0 }}
+        >
             <SessionProvider>
                 <div className='hidden md:block'>
                     <Navbar />
@@ -29,8 +35,6 @@ const NavbarWrapper = () => {
                                         </svg>
                                     </div>
                                 </button>
-
-                                <Navbar />
                             </div>
                             :
                             <button onClick={() => { handleOpenClose() }}>
@@ -42,6 +46,12 @@ const NavbarWrapper = () => {
 
                             </button>
                     }
+                    <motion.div
+                        variants={navVar}
+                        animate={showNav ? 'show' : 'hidden'}
+                    >
+                        <Navbar />
+                    </motion.div>
 
                 </div>
 

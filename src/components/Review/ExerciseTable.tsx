@@ -26,22 +26,38 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
         start: 0,
         finish: 10
     })
+    const [showRows, setShowRows] = React.useState<string>('show')
     const [search, setSearch] = React.useState('')
-
+    const tr = {
+        hidden: { x: -200, opacity: 0 },
+        show: { x: 0, opacity: 1 },
+    }
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setShowRows('hidden')
         setSearch(e.target.value)
         setTableIndex(previousState => { return { ...previousState, start: 0, finish: 10 } })
+        setTimeout(() => {
+            setShowRows('show')
+        }, 1100)
     }
     const goForward = () => {
+        setShowRows('hidden')
         setTableIndex(prevState => { return { ...prevState, start: prevState.start + 10, finish: prevState.finish + 10 } })
+        setTimeout(() => {
+            setShowRows('show')
+        }, 1100)
     }
     const goBack = () => {
+        setShowRows('hidden')
         if (tableIndex.start - 10 <= 0) {
             setTableIndex(prevState => ({ ...prevState, start: 0, finish: 10 }))
         } else {
             setTableIndex(prevState => ({ ...prevState, start: prevState.start - 10, finish: prevState.finish - 10 }))
         }
+        setTimeout(() => {
+            setShowRows('show')
+        }, 1100)
 
     }
 
@@ -120,10 +136,11 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                         exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
 
                             <motion.tr className='text-white'
-                                initial={{opacity: 0, x:-200}}
-                                animate={{opacity: 1, x: 0}}
-                                transition={{delay: 0.3 * index}}
-                                >
+                                initial={{ opacity: 0, x: -200 }}
+                                animate={showRows}
+                                variants={tr}
+                                transition={{ delay: 0.1 * index }}
+                            >
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
                                 <td className='flex border border-slate-700 p-2 justify-center items-center'>
                                     <button className='bg-red-500 p-2 rounded-lg' onClick={() => { selectExercise(exercise.e_name, exercise.id) }}>Select</button></td>

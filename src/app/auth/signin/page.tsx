@@ -69,7 +69,7 @@ const page = () => {
             <div className='hidden md:block' style={{ backgroundImage: 'url(/juice2.png)', backgroundSize: 'cover' }}>
 
             </div>
-            <div className='flex px-8 items-center justify-center md:justify-start'>
+            <div className='flex px-8 items-center justify-center md:justify-start h-screen'>
                 <div className='flex flex-col items-start justify-center text-white gap-4 text-center md:text-left'>
                     <motion.div className='flex flex-col gap-4'
                         initial={{opacity: 0}}

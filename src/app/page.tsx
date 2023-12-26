@@ -5,9 +5,9 @@ import AboutMe from '@/components/Landing/AboutMe'
 
 export default function Home() {
   return (
-    <main className='bg-[#1A1D24] flex flex-col min-h-screen'>
+    <main className='bg-gradient-to-tr to-[#DD8233] via-black from-[#1A1D24]  flex flex-col min-h-screen backdrop-blur '>
       <Navbar />
-      <div className='pt-32 p-5 md:p-24 md:pt-32 text-white'>
+      <div className='pt-32 p-5 md:p-24 md:pt-32 text-white relative z-10'>
         <Hero />
       </div>
       <div className='bg-black w-fill py-5'></div>
