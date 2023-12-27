@@ -39,30 +39,36 @@ const OneRepMax = async () => {
                 <div>
                     <p>There was an Error fetching the data</p>
                 </div> :
-                <div className='flex flex-col items-center gap-4'>
-                    <h1 className='text-3xl font-bold text-white text-center'> One Rep Max Attempts</h1>
-                    <table className='text-white table-auto border border-collapse border-slate-600'>
-                        <thead>
-                            <tr>
-                                <th className='border border-slate-600'>Name</th>
-                                <th className='border border-slate-600'>Weight</th>
-                                <th className='border border-slate-600'>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                oneRMS.data.map((repMax, index) => (
-                                    <tr key={index}>
-                                        <td className='border border-slate-700'>{repMax.name}</td>
-                                        <td className='border border-slate-700'>{repMax.weight}</td>
-                                        <td className='border border-slate-700'>{repMax.date_recorded.toDateString()}</td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
+                oneRMS.data.length === 0 ?
+                    <div className='p-3 bg-slate-600 rounded-xl shadow-xl text-4xl text-white'> <h1>Go Crazy First <br /> Record a 1RM</h1></div>
+                    :
+                    <div className='flex flex-col'>
 
-                    </table>
-                </div>
+                        <div className='flex flex-col items-center gap-4'>
+                            <h1 className='text-3xl font-bold text-white text-center'> One Rep Max Attempts</h1>
+                            <table className='text-white table-auto border border-collapse border-slate-600'>
+                                <thead>
+                                    <tr>
+                                        <th className='border border-slate-600'>Name</th>
+                                        <th className='border border-slate-600'>Weight</th>
+                                        <th className='border border-slate-600'>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        oneRMS.data.map((repMax, index) => (
+                                            <tr key={index}>
+                                                <td className='border border-slate-700'>{repMax.name}</td>
+                                                <td className='border border-slate-700'>{repMax.weight}</td>
+                                                <td className='border border-slate-700'>{repMax.date_recorded.toDateString()}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
             }
         </div>
     )
