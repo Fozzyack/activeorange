@@ -10,7 +10,7 @@ interface ExtendedUserSession extends Session {
         id?: string | null | undefined;
     } | undefined
 }
-export const dynamic = "force-dynamic"
+
 export async function GET(request: Request, { params }: { params: { exerciseId: number } }) {
     const session = await getServerSession(options) as ExtendedUserSession
     const sql = `SELECT weight, rpe, log, sets, reps, date_recorded FROM record_weight WHERE "userId"=$1 AND "exerciseId"=$2 ORDER BY date_recorded ASC`
