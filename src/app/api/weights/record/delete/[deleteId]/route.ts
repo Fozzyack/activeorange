@@ -10,7 +10,7 @@ interface ExtendedServerSession extends Session {
         image?: string | null | undefined,
     } | undefined
 }
-
+export const dynamic = "force-dynamic"
 export async function DELETE(request: Request, {params} : {params: {deleteId: string}}) {
     try {
         const session = await getServerSession(options) as ExtendedServerSession

@@ -10,6 +10,7 @@ interface ExendedUserSession extends Session {
         image?: string | null | undefined,
     } | undefined
 }
+export const dynamic = "force-dynamic"
 export async function POST(request: Request) {
     const session = await getServerSession(options) as ExendedUserSession
     const upload_sql = `INSERT INTO record_weight ("userId", "exerciseId", weight, sets, reps, date_recorded, rpe, log) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`
