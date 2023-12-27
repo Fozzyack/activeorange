@@ -16,10 +16,11 @@ const Hero = () => {
                     Transform your fitness with ActiveOrange—track, set goals, and achieve peak performance effortlessly.
                 </p>
                 <div className='flex flex-row gap-5'>
-                    <Link href={'/dashboard'} className=' text-white py-3 px-5 rounded-xl bg-gradient-to-br from-[#F18828] to-[#d60d1e]'>
+                    <Link href={'/dashboard'} className=' text-white py-3 px-5 rounded-xl bg-gradient-to-br from-[#F18828] to-[#d60d1e] hover:scale-110 transition ease-in-out'>
                         Sign In
                     </Link>
-                    <button className='text-[#F18828] border border-[#F18828] px-2 rounded-xl'>
+                    <button
+                    className='text-[#F18828] border border-[#F18828] px-2 rounded-xl hover:bg-[#F18828] hover:text-black transition ease-in-out'>
                         Learn More
                     </button>
                 </div>

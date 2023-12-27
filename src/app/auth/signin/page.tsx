@@ -50,7 +50,7 @@ const page = () => {
             case 'Callback':
                 return (
                     <div className='flex flex-col'>
-                        <p>Error in Callback - Please try Again</p>
+                        <p>Error getting your Credentials - Please try Again</p>
                     </div>
                 );
 
@@ -65,11 +65,11 @@ const page = () => {
 
     }
     return (
-        <div className='bg-[#161A23] h-screen flex flex-col md:grid md:grid-cols-2'>
-            <div className='hidden md:block' style={{ backgroundImage: 'url(/juice2.png)', backgroundSize: 'cover' }}>
+        <div className='bg-[#161A23] h-screen flex flex-col md:grid md:grid-cols-12'>
+            <div className='hidden md:block md:col-span-7 lg:col-span-8' style={{ backgroundImage: 'url(/juice2.png)', backgroundSize: 'cover', backgroundPosition:'center', backgroundRepeat: 'no-repeat' }} >
 
             </div>
-            <div className='flex px-8 items-center justify-center md:justify-start h-screen'>
+            <div className='flex px-8 items-center justify-center md:justify-start h-screen md:col-span-5 lg:col-span-4'>
                 <div className='flex flex-col items-start justify-center text-white gap-4 text-center md:text-left'>
                     <motion.div className='flex flex-col gap-4'
                         initial={{opacity: 0}}

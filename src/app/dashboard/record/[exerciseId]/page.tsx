@@ -1,5 +1,6 @@
 'use client'
-import React from 'react'
+
+import React  from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -31,9 +32,10 @@ const page = ({ params }: { params: { exerciseId: number } }) => {
         setLog(e.target.value)
     }
 
-    const sendData = async () => {
-        if (!sets || !reps || !weight || !rpe) {
-            setError('Please Make sure all fields are filled out')
+    const sendData = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!sets || !reps || !weight || !rpe || !date) {
+            return setError('Please Make sure all fields are filled out')
         }
         setSuccess('loading')
         const res = await fetch('/api/weights/exercises/uploadexercise', {
@@ -73,7 +75,7 @@ const page = ({ params }: { params: { exerciseId: number } }) => {
                 {
                     success === 'unfilled' ?
                         <div className='col-span-1'>
-                            <form className='text-white  flex flex-col justify-center items-center p-4 rounded-xl max-w-[400px] border shadow-xl' onSubmit={() => { sendData() }}>
+                            <form className='text-white  flex flex-col justify-center items-center p-4 rounded-xl max-w-[400px] border shadow-xl' onSubmit={(e) => { sendData(e) }}>
                                 <div className='flex flex-col gap-3 items-center'>
                                     <div className='flex flex-row gap-4'>
                                         <div className='flex flex-col w-[110px]'>
@@ -109,7 +111,7 @@ const page = ({ params }: { params: { exerciseId: number } }) => {
                                 </div>
                                 <button type='submit' className='mt-2 bg-gradient-to-r py-2 px-3 from-[#F18828] to-[#d60d1e] rounded-xl w-[120px]'>Submit</button>
                                 {
-                                    error ? <div className='p-3 bg-red-600 rounded-xl'> {error}</div> : null
+                                    error ? <div className='p-3 bg-red-600 rounded-xl mt-6'> {error}</div> : null
                                 }
                             </form>
                         </div>

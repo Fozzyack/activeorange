@@ -5,8 +5,11 @@ import AboutMe from '@/components/Landing/AboutMe'
 
 export default function Home() {
   return (
-    <main className='bg-gradient-to-tr to-[#DD8233] via-black from-[#1A1D24]  flex flex-col min-h-screen backdrop-blur '>
-      <Navbar />
+    <main className='bg-gradient-to-tr to-[#DD8233] via-black from-[#1A1D24] flex flex-col min-h-screen'>
+      <div className='relative z-20'>
+        <Navbar />
+      </div>
+
       <div className='pt-32 p-5 md:p-24 md:pt-32 text-white relative z-10'>
         <Hero />
       </div>

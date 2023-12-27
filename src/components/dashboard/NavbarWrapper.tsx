@@ -24,10 +24,10 @@ const NavbarWrapper = () => {
                 <div className='hidden md:block'>
                     <Navbar />
                 </div>
-                <div className='block md:hidden'>
+                <div className='fixed md:hidden w-full bg-[#1A1D24] bg-opacity-95 p-3'>
                     {
                         showNav ?
-                            <div className=''>
+                            <div className='fixed z-60 opacity-100'>
                                 <button onClick={() => { handleOpenClose() }}>
                                     <div className=' p-3 bg-[#737579] rounded-xl'>
                                         <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
