@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 type ErrorMsg = string | null | undefined
 
-const page = () => {
+const Page = () => {
 
     const searchParams = useSearchParams()
     const error = searchParams.get('error')
@@ -133,4 +133,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

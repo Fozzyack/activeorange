@@ -140,6 +140,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                                 animate={showRows}
                                 variants={tr}
                                 transition={{ delay: 0.1 * index }}
+                                key={index}
                             >
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
                                 <td className='flex border border-slate-700 p-2 justify-center items-center'>

@@ -67,7 +67,7 @@ const FindExercise = ({ records }: { records: records }) => {
             <div className='flex gap-4 flex-wrap mt-10'>
                 {
                     displayRecords.map((record, index) => (
-                        <motion.div
+                        <motion.div key={index}
                             initial={{ opacity: 0 }}
                             animate={show ? 'show' : 'hide'}
                             variants={variants}

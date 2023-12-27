@@ -57,7 +57,7 @@ const RecentlyRecorded = async () => {
                         <tbody>
                             {
                                 records.data.map((record, index) => (
-                                    <tr>
+                                    <tr key={index}>
                                         <td className='p-1 border-r border-t border-slate-400 '>{record.name}</td>
                                         <td className='p-1  border border-slate-400' >{record.sets}</td>
                                         <td className='p-1  border border-slate-400'>{record.reps}</td>

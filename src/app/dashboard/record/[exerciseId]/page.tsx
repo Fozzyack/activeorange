@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 
-const page = ({ params }: { params: { exerciseId: number } }) => {
+const Page = ({ params }: { params: { exerciseId: number } }) => {
     const [date, setDate] = React.useState(new Date())
     const [sets, setSets] = React.useState<number | undefined>()
     const [reps, setReps] = React.useState<number | undefined>()
@@ -136,4 +136,4 @@ const page = ({ params }: { params: { exerciseId: number } }) => {
     )
 }
 
-export default page
+export default Page

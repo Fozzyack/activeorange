@@ -7,7 +7,7 @@ interface Exercise {
     name: string;
     id: number;
 }
-const page = () => {
+const Page = () => {
     const [selectedExercises, setSelectedExercises] = React.useState<Exercise[]>([])
 
     const remove = (id: number) => {
@@ -24,7 +24,7 @@ const page = () => {
             <div className=' align-start justify-items-start gap-4 flex flex-row flex-wrap'>
                 {
                     selectedExercises.map((exercise, index) => (
-                        <div className='flex flex-row text-white bg-slate-600 rounded-xl p-3 gap-3 items-center justify-center'>
+                        <div key={index} className='flex flex-row text-white bg-slate-600 rounded-xl p-3 gap-3 items-center justify-center'>
                             <p>{exercise.name}</p>
                             <button onClick={() => { remove(exercise.id) }}>
                                 <svg className="w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -48,4 +48,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

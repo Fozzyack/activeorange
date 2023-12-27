@@ -95,7 +95,7 @@ const ExerciseList = () => {
                 <tbody>
                     {
                         exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1)) || exercise.m_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
-                            <motion.tr
+                            <motion.tr key={index}
                                 initial={{ opacity: 0, x: -200 }}
                                 animate={showRows}
                                 variants={tr}
