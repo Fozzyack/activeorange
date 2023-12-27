@@ -14,10 +14,12 @@ Have only made apps with RESTful APIs. Whilst this app will mostly be RESTful, I
 - [x] Display Lifts (ChartJS) -- End of Day 2
 - [x] Clean up code (Alter api calls after session object change)
 - [x] Create Custom Login Page
-- [ ] Create a Settings Page
-- [ ] Design A main dashboard component
+- [x] Create a Settings Page
+- [x] Design A main dashboard component
+- [x] Deploy to Vercel
+- [x] Host a postgres database on a VM - budget reasons
 - [ ] Beautify UI - Add images, Propper buttons and add animations (Spruce up landing page)
-- [ ] Design a calorie tracker (Very simple)
+- [ ] Design a workout holder
 
 ## Main Tech Stack
 * [![NextJs](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
