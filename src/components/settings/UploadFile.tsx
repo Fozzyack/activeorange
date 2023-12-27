@@ -14,6 +14,7 @@ const UploadFile = () => {
                 body: data
             })
             if (!res.ok) throw new Error(await res.text())
+            window.location.reload()
         } catch (error : any) {
             console.error(error)
 

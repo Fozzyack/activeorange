@@ -3,6 +3,9 @@ import { options } from "../../auth/[...nextauth]/options";
 import { join } from "path";
 import { v4 as uuidv4 } from 'uuid'
 import { writeFile } from "fs/promises";
+import { pool } from "@/utils/db";
+import fs from 'fs'
+
 interface ExtendedUserSession extends Session {
     user: {
         name?: string | null | undefined;
@@ -12,13 +15,28 @@ interface ExtendedUserSession extends Session {
     } | undefined
 }
 
+const MAX_FILE_SIZE_MB = 5;
 
 export async function POST(request: Request) {
     const session = await getServerSession(options) as ExtendedUserSession
     const data = await request.formData()
+    const sql = `UPDATE users SET image=$1 WHERE id=$2`
     const file: File | null = data.get('file') as unknown as File
     if (!file) {
         return Response.json(JSON.stringify({ success: false }), { status: 500 })
+    }
+
+    
+
+    // Validate file size
+    const fileSizeMB = file.size / (1024 * 1024); // Convert to megabytes
+    if (fileSizeMB > MAX_FILE_SIZE_MB) {
+        return Response.json(JSON.stringify({ success: false, error: `File size exceeds the maximum limit of ${MAX_FILE_SIZE_MB} MB` }), { status: 500 });
+    }
+
+    const allowedImageTypes = ['image/jpeg', 'image/png', 'image/jpg']; // Add more types if needed
+    if (!allowedImageTypes.includes(file.type)) {
+        return Response.json(JSON.stringify({ success: false, error: 'Invalid file type. Only JPEG, PNG, and GIF images are allowed.' }), { status: 500 });
     }
 
     const bytes = await file.arrayBuffer()
@@ -26,6 +44,16 @@ export async function POST(request: Request) {
     const file_type = file.type.split('/')
     const name = uuidv4().concat('.', file_type[1])
     const path = join('public/uploads/', name)
+    await pool.query(sql, [''.concat('/uploads/', name), session.user?.id])
+    const existingImagePath = join('public', session.user?.image || '');
+    if (fs.existsSync(existingImagePath)) {
+        try {
+            fs.unlinkSync(existingImagePath);
+        } catch (error) {
+            console.error('Error deleting existing file:', error);
+            return Response.json(JSON.stringify({ success: false }), { status: 500 });
+        }
+    }
     await writeFile(path, buffer)
     return Response.json({success: true})
 }
