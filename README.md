@@ -14,10 +14,10 @@ Have only made apps with RESTful APIs. Whilst this app will mostly be RESTful, I
 - [x] Display Lifts (ChartJS) -- End of Day 2
 - [x] Clean up code (Alter api calls after session object change)
 - [x] Create Custom Login Page
-- [x] Create a Settings Page
+- [x] Create a Settings Page -- End of Day 3
 - [x] Design A main dashboard component
 - [x] Deploy to Vercel
-- [x] Host a postgres database on a VM - budget reasons
+- [x] Host a postgres database on a VM - budget reasons -- End of Day 4
 - [ ] Beautify UI - Add images, Propper buttons and add animations (Spruce up landing page)
 - [ ] Design a workout holder
 

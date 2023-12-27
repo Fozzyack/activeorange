@@ -26,8 +26,6 @@ export async function POST(request: Request) {
         return Response.json(JSON.stringify({ success: false }), { status: 500 })
     }
 
-    
-
     // Validate file size
     const fileSizeMB = file.size / (1024 * 1024); // Convert to megabytes
     if (fileSizeMB > MAX_FILE_SIZE_MB) {
