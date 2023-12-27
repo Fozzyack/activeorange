@@ -4,9 +4,8 @@ import Image from 'next/image'
 import React from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
-type ErrorMsg = string | null | undefined
 
-const Page = () => {
+const page = () => {
 
     const searchParams = useSearchParams()
     const error = searchParams.get('error')
@@ -133,4 +132,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default page
