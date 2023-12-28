@@ -46,7 +46,7 @@ export async function POST(request: Request) {
         const path = join('public/uploads/', name)
         await pool.query(sql, [''.concat('/uploads/', name), session.user?.id])
         const existingImagePath = join('public', session.user?.image || '');
-        if (fs.existsSync(existingImagePath) && session.user?.image) {
+        if (fs.existsSync(existingImagePath)) {
             try {
                 fs.unlinkSync(existingImagePath);
             } catch (error) {
@@ -54,11 +54,11 @@ export async function POST(request: Request) {
                 return Response.json({ success: false }, { status: 500 });
             }
         }
-        
-            await writeFile(path, buffer)
+
+        await writeFile(path, buffer)
         return Response.json({ success: true })
     } catch (error: any) {
-            Response.json({ success: false, error: error.message }, { status: 500 })
+        Response.json({ success: false, error: error.message }, { status: 500 })
 
     }
 
