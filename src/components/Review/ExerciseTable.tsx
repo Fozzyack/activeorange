@@ -143,8 +143,8 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                                 key={index}
                             >
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
-                                <td className='border w-full border-slate-700 p-2 grid justify-center'>
-                                    <button className='bg-red-500 p-2 rounded-lg max-w-20' onClick={() => { selectExercise(exercise.e_name, exercise.id) }}>Select</button></td>
+                                <td className='border w-full border-slate-700 p-2'>
+                                    <button className='bg-red-500 p-2 rounded-lg max-w-20 w-full' onClick={() => { selectExercise(exercise.e_name, exercise.id) }}>Select</button></td>
                             </motion.tr>
                         ))
                     }

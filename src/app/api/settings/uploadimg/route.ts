@@ -23,18 +23,18 @@ export async function POST(request: Request) {
     const sql = `UPDATE users SET image=$1 WHERE id=$2`
     const file: File | null = data.get('file') as unknown as File
     if (!file) {
-        return Response.json(JSON.stringify({ success: false }), { status: 500 })
+        return Response.json({ success: false }, { status: 500 })
     }
 
     // Validate file size
     const fileSizeMB = file.size / (1024 * 1024); // Convert to megabytes
     if (fileSizeMB > MAX_FILE_SIZE_MB) {
-        return Response.json(JSON.stringify({ success: false, error: `File size exceeds the maximum limit of ${MAX_FILE_SIZE_MB} MB` }), { status: 500 });
+        return Response.json({ success: false, error: `File to Large Max File Size ${MAX_FILE_SIZE_MB}Mb` }, { status: 500 });
     }
 
     const allowedImageTypes = ['image/jpeg', 'image/png', 'image/jpg']; // Add more types if needed
     if (!allowedImageTypes.includes(file.type)) {
-        return Response.json(JSON.stringify({ success: false, error: 'Invalid file type. Only JPEG, PNG, and GIF images are allowed.' }), { status: 500 });
+        return Response.json({ success: false, error: 'Only JPEG and PNG Images Allowed' }, { status: 500 });
     }
 
     const bytes = await file.arrayBuffer()
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
             fs.unlinkSync(existingImagePath);
         } catch (error) {
             console.error('Error deleting existing file:', error);
-            return Response.json(JSON.stringify({ success: false }), { status: 500 });
+            return Response.json({ success: false }, { status: 500 });
         }
     }
     await writeFile(path, buffer)

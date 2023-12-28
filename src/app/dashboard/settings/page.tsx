@@ -22,7 +22,7 @@ const page = async () => {
     }
     console.log(session)
     return (
-        <div className='flex flex-col text-white gap-4 items-center md:items-start'>
+        <div className='flex flex-col w-full text-white gap-4 items-center md:items-start'>
             <h1 className='text-5xl font-bold underline'>Settings</h1>
             <UpdateName id={session.user.id} name={session.user.name}/>
             <UploadFile />
