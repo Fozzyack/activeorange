@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { writeFile } from "fs/promises";
 import { pool } from "@/utils/db";
 import fs from 'fs'
-
+export const dynamic = "force-dynamic"
 interface ExtendedUserSession extends Session {
     user: {
         name?: string | null | undefined;

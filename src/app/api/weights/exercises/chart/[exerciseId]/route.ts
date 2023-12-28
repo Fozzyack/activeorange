@@ -1,7 +1,7 @@
 import { options } from "@/app/api/auth/[...nextauth]/options"
 import { pool } from "@/utils/db"
 import { Session, getServerSession } from "next-auth"
-
+export const dynamic = "force-dynamic"
 interface ExtendedUserSession extends Session {
     user: {
         name?: string | null | undefined;
