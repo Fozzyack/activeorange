@@ -62,7 +62,7 @@ const ExerciseList = () => {
     const getExercises = async () => {
         const res = await fetch('/api/weights/exercises/getexercises', {
             method: 'GET',
-            next: {revalidate: 3600}
+            next: {revalidate: 1800}
         })
         if (!res.ok) {
             throw new Error('There was an error getting the exercise List')
