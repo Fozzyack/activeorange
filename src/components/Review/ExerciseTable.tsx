@@ -29,32 +29,42 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
     const [showRows, setShowRows] = React.useState<string>('show')
     const [search, setSearch] = React.useState('')
     const tr = {
-        hidden: { x: -200, opacity: 0 },
-        show: { x: 0, opacity: 1 },
+        hidden: {opacity: 0 },
+        show: {opacity: 1 },
     }
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setShowRows('hidden')
-        setSearch(e.target.value)
-        setTableIndex(previousState => { return { ...previousState, start: 0, finish: 10 } })
+        
+        setTimeout(() => {
+            setSearch(e.target.value)
+            setTableIndex(previousState => { return { ...previousState, start: 0, finish: 10 } })
+        }, 1000)
+
         setTimeout(() => {
             setShowRows('show')
         }, 1100)
     }
     const goForward = () => {
         setShowRows('hidden')
-        setTableIndex(prevState => { return { ...prevState, start: prevState.start + 10, finish: prevState.finish + 10 } })
+        setTimeout(() => {
+            setTableIndex(prevState => { return { ...prevState, start: prevState.start + 10, finish: prevState.finish + 10 } })
+        }, 1000)
+
         setTimeout(() => {
             setShowRows('show')
         }, 1100)
     }
     const goBack = () => {
         setShowRows('hidden')
-        if (tableIndex.start - 10 <= 0) {
-            setTableIndex(prevState => ({ ...prevState, start: 0, finish: 10 }))
-        } else {
-            setTableIndex(prevState => ({ ...prevState, start: prevState.start - 10, finish: prevState.finish - 10 }))
-        }
+        setTimeout(() => {
+            if (tableIndex.start - 10 <= 0) {
+                setTableIndex(prevState => ({ ...prevState, start: 0, finish: 10 }))
+            } else {
+                setTableIndex(prevState => ({ ...prevState, start: prevState.start - 10, finish: prevState.finish - 10 }))
+            }
+        }, 1000)
+
         setTimeout(() => {
             setShowRows('show')
         }, 1100)
@@ -108,7 +118,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
     return (
         <div className='text-white'>
             <div className='flex flex-row gap-4 mb-5 w-full flex-wrap'>
-                <input type="text" className='text-black p-3 rounded-xl max-w-full' value={search} onChange={(e) => { handleSearch(e) }} />
+                <input type="text" className='text-black p-3 rounded-xl max-w-full' onChange={(e) => { handleSearch(e) }} />
                 {
                     tableIndex.start != 0 ? <button className='p-4 items-center justify-center rounded-xl bg-orange-600' onClick={() => { goBack() }}>
                         <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
@@ -137,7 +147,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                         exercises.filter((exercise) => exercise.e_name.toLowerCase().includes(search.toLowerCase())).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
 
                             <motion.tr className='text-white'
-                                initial={{ opacity: 0, x: -200 }}
+                                initial={{ opacity: 0}}
                                 animate={showRows}
                                 variants={tr}
                                 transition={{ delay: 0.1 * index }}
