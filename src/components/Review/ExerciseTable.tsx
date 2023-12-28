@@ -63,7 +63,8 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
 
     const getExercises = async () => {
         const res = await fetch('/api/weights/exercises/getexercises', {
-            method: 'GET'
+            method: 'GET',
+            cache: 'no-cache'
         })
         if (!res.ok) {
             throw new Error('There was an error getting the exercise List')
