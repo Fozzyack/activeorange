@@ -11,11 +11,11 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
     redirect('/api/auth/signin?callbackUrl=/dashboard')
   }
   return (
-      <div className='md:grid md:grid-cols-12 bg-[#1A1D24] min-h-screen md:p-16 gap-10 max-w-screen'>
+      <div className='md:grid md:grid-cols-12 bg-[#1A1D24] min-h-screen md:p-16 gap-10 max-w-screen text-[12px] md:text-base'>
         <div className='col-span-5 lg:col-span-3'>
           <NavbarWrapper />
         </div>
-        <div className='col-span-7 lg:col-span-9 pt-20 px-5 pb-5 md:p-0'>
+        <div className='col-span-7 lg:col-span-9 pt-20 px-5 pb-5 md:p-0 '>
         {children}
         </div>
         

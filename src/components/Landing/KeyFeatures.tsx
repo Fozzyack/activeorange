@@ -34,11 +34,11 @@ const KeyFeatures = () => {
     return (
         <div id='whatthisdoes' className='flex flex-col md:grid md:grid-cols-5 w-full items-center mt-24 gap-4'>
             <div className='col-span-2'>
-                <h1 className='text-transparent bg-clip-text bg-[#F18828] text-5xl font-bold'>
+                <h1 className='text-transparent bg-clip-text bg-[#E84000] text-5xl font-bold'>
                     What This Does
                 </h1>
             </div>
-            <div className='bg-black p-8 flex flex-row gap-3 items-center justify-center col-span-3 rounded shodow-xl'>
+            <div className='bg-gradient-to-t from-[#E84000] from-60% to-[#fc8000] rounded-xl p-8 md:flex-row flex-col gap-3 items-center justify-center col-span-3 shodow-xl flex'>
                 <div>
                     {FEATURES[0].image}
                     <h3 className='text-lg font-bold'>
@@ -48,7 +48,7 @@ const KeyFeatures = () => {
                         {FEATURES[0].description}
                     </p>
                 </div>
-                <div className='bg-[#161A23] p-4 shadow-xl'>
+                <div className='bg-[#161A23] p-4 shadow-xl rounded-xl'>
                     {FEATURES[1].image}
                     <h3 className='text-lg font-bold'>
                         {FEATURES[1].name}

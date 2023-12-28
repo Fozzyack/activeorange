@@ -13,7 +13,7 @@ const AboutMe = () => {
                     About Me
                 </h1>
                 <p>I am a Software Engineer who likes to lift heavy circles</p>
-                <p>As of creating this it is an online platform to hold all my lifting data. However, feel free to use it aswell!</p>
+                <p>As of creating this it is an online platform to hold all my lifting data.. blah blah blah</p>
             </div>
 
 

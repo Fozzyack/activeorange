@@ -50,8 +50,8 @@ const ExerciseChart = ({ id}: { id: number }) => {
     }, [])
 
     return (
-        <div className=" flex flex-col md:grid md:grid-cols-2 gap-3 w-full ">
-            <div >
+        <div className="md:grid md:grid-cols-2 gap-3 w-full w-max-screen">
+            <div>
                 <h4 className="text-center text-white font-bold text-lg py-3">Weight Graph</h4>
                 <Line
                     className="p-1 rounded-xl bg-slate-800"

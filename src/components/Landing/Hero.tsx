@@ -8,11 +8,11 @@ const Hero = () => {
         <motion.div 
         initial={{opacity: 0}}
         animate={{opacity: 1}}
-         id='herosection' className='flex flex-col md:grid md:grid-cols-12 h-full items-center justify-around gap-10'>
-            <div className=' md:col-span-6 lg:col-span-6 flex flex-col text-center items-center md:items-start md:text-start gap-4 0'>
-                <h3 className='font-bold text-4xl text-white'>Prepare To</h3>
-                <h1 className='bg-clip-text text-transparent text-6xl bg-gradient-to-br from-[#F18828] to-[#d60d1e] font-bold'>Optimize. Energize. <br /> Excel.</h1>
-                <p>
+         id='herosection' className='flex flex-col md:grid md:grid-cols-12 h-full items-center justify-around gap-10 bg-gradient-to-tr from-black to-[#F06923] md:p-32 pt-32 from-55% '>
+            <div className=' md:col-span-6 lg:col-span-6 flex flex-col text-center items-center md:items-start md:text-start gap-1 md:gap-4 px-6 md:px-0'>
+                <h3 className='font-bold text-lg md:text-2xl  text-white'>Prepare To</h3>
+                <h1 className='bg-clip-text text-transparent text-xl md:text-6xl bg-gradient-to-br from-[#F18828] to-[#d60d1e] font-bold'>Optimize. Energize. <br /> Excel.</h1>
+                <p className='text-[12px] md:text-base'>
                     Transform your fitness with ActiveOrange—track, set goals, and achieve peak performance effortlessly.
                 </p>
                 <div className='flex flex-row gap-5'>

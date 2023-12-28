@@ -103,7 +103,7 @@ const ExerciseList = () => {
                                 className='text-white'>
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
                                 <td className='table-cell border border-slate-700 p-2'>{exercise.m_name}</td>
-                                <td className='flex border border-slate-700 p-2 justify-center items-center'>
+                                <td className='border border-slate-700 p-2 justify-center items-center'>
                                     <Link className='bg-red-500 p-2 rounded-lg' href={`/dashboard/record/${exercise.id}`}>Select</Link></td>
                             </motion.tr>
                         ))

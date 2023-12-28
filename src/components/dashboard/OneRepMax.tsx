@@ -46,21 +46,21 @@ const OneRepMax = async () => {
 
                         <div className='flex flex-col items-center gap-4'>
                             <h1 className='text-3xl font-bold text-white text-center'> One Rep Max Attempts</h1>
-                            <table className='text-white table-auto border border-collapse border-slate-600'>
+                            <table className='text-white table-auto border border-collapse text-center border-slate-600'>
                                 <thead>
                                     <tr>
-                                        <th className='border border-slate-600'>Name</th>
-                                        <th className='border border-slate-600'>Weight</th>
-                                        <th className='border border-slate-600'>Date</th>
+                                        <th className='p-2 border border-slate-600'>Name</th>
+                                        <th className=' p-2 border border-slate-600'>Weight</th>
+                                        <th className=' p-2 border border-slate-600'>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
                                         oneRMS.data.map((repMax, index) => (
                                             <tr key={index}>
-                                                <td className='border border-slate-700'>{repMax.name}</td>
-                                                <td className='border border-slate-700'>{repMax.weight}</td>
-                                                <td className='border border-slate-700'>{repMax.date_recorded.toDateString()}</td>
+                                                <td className='p-2 border border-slate-700'>{repMax.name}</td>
+                                                <td className='p-2 border border-slate-700'>{repMax.weight}</td>
+                                                <td className='p-2 border border-slate-700'>{repMax.date_recorded.toDateString()}</td>
                                             </tr>
                                         ))
                                     }
