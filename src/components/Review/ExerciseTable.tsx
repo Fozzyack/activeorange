@@ -116,7 +116,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                     </button> : null
                 }
                 {
-                    tableIndex.finish <= exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).length - 1 ? <button onClick={() => { goForward() }} className='p-4 flex items-center justify-center rounded-xl bg-orange-600'>
+                    tableIndex.finish <= exercises.filter((exercise) => exercise.e_name.toLowerCase().includes(search.toLowerCase())).length - 1 ? <button onClick={() => { goForward() }} className='p-4 flex items-center justify-center rounded-xl bg-orange-600'>
                         <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
                         </svg>
@@ -133,7 +133,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                 </thead>
                 <tbody>
                     {
-                        exercises.filter((exercise) => exercise.e_name.includes(search.charAt(0).toUpperCase() + search.slice(1))).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
+                        exercises.filter((exercise) => exercise.e_name.toLowerCase().includes(search.toLowerCase())).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
 
                             <motion.tr className='text-white'
                                 initial={{ opacity: 0, x: -200 }}
