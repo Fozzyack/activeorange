@@ -15,7 +15,7 @@ const UploadFile = () => {
         try {
             const data = new FormData();
             data.append('file', file);
-            const res = await fetch('/api/settings/uploadimg', {
+            const res = await fetch('/api/settings/img', {
                 method: 'POST',
                 body: data,
                 cache: 'no-cache'

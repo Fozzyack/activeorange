@@ -68,9 +68,37 @@ const LINKS = [
             </svg>
     }
 ]
+
+
+const getProfilePicture = async () => {
+
+}
 const Navbar = () => {
     const { data: Session } = useSession()
     const [selected, setSelected] = React.useState<number | null>(null)
+    const [uploadedImage, setUploadedImage] = React.useState(false)
+    const [imageSrc, setImageSrc] = React.useState('');
+
+    const getProfilePicture = async () => {
+        const res = await fetch('/api/settings/img', {
+            method: 'GET'
+        })
+        if (!res.ok) throw new Error('Error getting Data')
+        const data = await res.json()
+        if (data.uploaded_image) {
+            const base64String = Buffer.from(data.image_data.data).toString('base64');
+            const imageSrc = `data:${data.image_type};base64,${base64String}`
+            setImageSrc(imageSrc)
+            console.log(data.image_data, imageSrc, typeof (data.image_data))
+
+            setUploadedImage(true)
+        }
+    }
+
+    React.useEffect(() => {
+        getProfilePicture()
+    }, [])
+    console.log(imageSrc)
     return (
         <div className='bg-[#1E2229] flex flex-col items-center text-white rounded-xl shadow-xl p-7 divide-y divide-gray-500 fixed max-h-[75%] mt-16 md:max-h-[100%] md:mt-0 mr-10 md:mr-0 z-50 overflow-auto ' >
 
@@ -85,14 +113,17 @@ const Navbar = () => {
             <div className='w-full'>
                 <div className='flex flex-col items-center gap-4 mt-5'>
                     {
-                        Session?.user?.image ?
-                        <Image src={Session?.user?.image as string} alt='Profile Picture' width={100} height={100} className='rounded-full border border-[#F68E31]' /> :
-                        <p>Upload A Profile Picture in settings</p>
+                        uploadedImage ?
+                            <Image id="profileImage" src={imageSrc} alt="User Profile Image" width={100} height={100} className='rounded-full border border-[#F68E31]' />
+                            :
+                            Session?.user?.image ?
+                                <Image src={Session?.user?.image as string} alt='Profile Picture' width={100} height={100} className='rounded-full border border-[#F68E31]' /> :
+                                <p>Upload A Profile Picture in settings</p>
                     }
                     {
                         Session?.user?.name ?
-                        <p className='text-transparent  font-bold text-lg bg-clip-text bg-gradient-to-r from-[#F68E31] to-[#d60d1e]'>{Session?.user?.name}</p> :
-                        <p className='text-transparent  font-bold text-lg bg-clip-text bg-gradient-to-r from-[#F68E31] to-[#d60d1e]'>{Session?.user?.email}</p>
+                            <p className='text-transparent  font-bold text-lg bg-clip-text bg-gradient-to-r from-[#F68E31] to-[#d60d1e]'>{Session?.user?.name}</p> :
+                            <p className='text-transparent  font-bold text-lg bg-clip-text bg-gradient-to-r from-[#F68E31] to-[#d60d1e]'>{Session?.user?.email}</p>
                     }
 
 

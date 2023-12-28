@@ -1,10 +1,6 @@
 import { Session, getServerSession } from "next-auth";
 import { options } from "../../auth/[...nextauth]/options";
-import { join } from "path";
-import { v4 as uuidv4 } from 'uuid'
-import { writeFile } from "fs/promises";
 import { pool } from "@/utils/db";
-import fs from 'fs'
 export const dynamic = "force-dynamic"
 interface ExtendedUserSession extends Session {
     user: {
@@ -17,12 +13,15 @@ interface ExtendedUserSession extends Session {
 
 const MAX_FILE_SIZE_MB = 5;
 
+
+
+
 export async function POST(request: Request) {
 
     try {
         const session = await getServerSession(options) as ExtendedUserSession
         const data = await request.formData()
-        const sql = `UPDATE users SET image=$1 WHERE id=$2`
+        const sql = `UPDATE users SET uploaded_image=$1, image_data=$2, image_type=$3 WHERE id=$4 RETURNING *`
         const file: File | null = data.get('file') as unknown as File
         if (!file) {
             return Response.json({ success: false }, { status: 500 })
@@ -41,25 +40,25 @@ export async function POST(request: Request) {
 
         const bytes = await file.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        const file_type = file.type.split('/')
-        const name = uuidv4().concat('.', file_type[1])
-        const path = join('public/uploads/', name)
-        await pool.query(sql, [''.concat('/uploads/', name), session.user?.id])
-        const existingImagePath = join('public', session.user?.image || '');
-        if (fs.existsSync(existingImagePath)) {
-            try {
-                fs.unlinkSync(existingImagePath);
-            } catch (error) {
-                console.error('Error deleting existing file:', error);
-                return Response.json({ success: false }, { status: 500 });
-            }
-        }
-
-        await writeFile(path, buffer)
-        return Response.json({ success: true })
+        
+        const wow = await pool.query(sql, [true, buffer, file.type, session.user?.id])
+        console.log(wow.rows[0])
+        return Response.json({success: true})
     } catch (error: any) {
         Response.json({ success: false, error: error.message }, { status: 500 })
 
     }
 
+}
+
+export async function GET(request : Request) {
+    try {
+        const session = await getServerSession(options) as ExtendedUserSession
+        const sql = `SELECT uploaded_image, image_data, image_type FROM users WHERE id=$1`
+        const data = await pool.query(sql, [session.user?.id])
+        return Response.json(data.rows[0])
+    } catch (error: any) {
+        console.log(error.message)
+        Response.json({error: error.message}, {status: 500})
+    }
 }
