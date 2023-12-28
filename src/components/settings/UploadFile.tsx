@@ -21,11 +21,9 @@ const UploadFile = () => {
                 cache: 'no-cache'
             });
             if (!res.ok) {
-                const resultString = await res.text(); // Get the response as text
-                const resultObject = JSON.parse(resultString); // Parse the string into an object
+                const resultString = await res.json();
             
-                // Extract the error message from the object and throw it
-                throw new Error(resultObject.error || 'An unknown error occurred');
+                throw new Error(resultString.error || 'An unknown error occurred');
             }
             window.location.reload();
         } catch (error: any) {
