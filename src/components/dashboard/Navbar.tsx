@@ -48,6 +48,24 @@ const LINKS = [
             <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z" />
             </svg>
+    },
+    {
+        id: 4,
+        name: 'Workouts',
+        href: '/dashboard/workouts',
+        image:
+            <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                <path d="M9 1.334C7.06.594 1.646-.84.293.653a1.158 1.158 0 0 0-.293.77v13.973c0 .193.046.383.134.55.088.167.214.306.366.403a.932.932 0 0 0 .5.147c.176 0 .348-.05.5-.147 1.059-.32 6.265.851 7.5 1.65V1.334ZM19.707.653C18.353-.84 12.94.593 11 1.333V18c1.234-.799 6.436-1.968 7.5-1.65a.931.931 0 0 0 .5.147.931.931 0 0 0 .5-.148c.152-.096.279-.235.366-.403.088-.167.134-.357.134-.55V1.423a1.158 1.158 0 0 0-.293-.77Z" />
+            </svg>
+    },
+    {
+        id: 5,
+        name: 'Profile',
+        href: '/dashboard/profile',
+        image:
+            <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                <path d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.157-.625A3.427 3.427 0 0 1 6.5 9.571a3.426 3.426 0 0 1 3.322 2.805l.159.622-6.967.023ZM16 12h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Z" />
+            </svg>
     }
 ]
 const Navbar = () => {
@@ -66,8 +84,19 @@ const Navbar = () => {
             </div>
             <div className='w-full'>
                 <div className='flex flex-col items-center gap-4 mt-5'>
-                    <Image src={Session?.user?.image as string} alt='Profile Picture' width={100} height={100} className='rounded-full border border-[#F68E31]' />
-                    <p className='text-transparent  font-bold text-lg bg-clip-text bg-gradient-to-r from-[#F68E31] to-[#d60d1e]'>{Session?.user?.name}</p>
+                    {
+                        Session?.user?.image ?
+                        <Image src={Session?.user?.image as string} alt='Profile Picture' width={100} height={100} className='rounded-full border border-[#F68E31]' /> :
+                        <p>Upload A Profile Picture in settings</p>
+                    }
+                    {
+                        Session?.user?.name ?
+                        <p className='text-transparent  font-bold text-lg bg-clip-text bg-gradient-to-r from-[#F68E31] to-[#d60d1e]'>{Session?.user?.name}</p> :
+                        <p className='text-transparent  font-bold text-lg bg-clip-text bg-gradient-to-r from-[#F68E31] to-[#d60d1e]'>{Session?.user?.email}</p>
+                    }
+
+
+
                 </div>
             </div>
             <div className='mt-5 flex flex-col w-full items-center'>

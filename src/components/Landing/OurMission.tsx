@@ -20,10 +20,10 @@ const MISSIONS = [
 ]
 const OurMission = () => {
   return (
-    <div className='bg-[#272522] rounded-xl p-3 flex flex-col md:flex-row gap-4'>
+    <div className='bg-white rounded-xl p-3 md:p-8 flex flex-col md:grid md:grid-cols-3 gap-4'>
         {
             MISSIONS.map((miss, index) => (
-                <div key={index} className='p-4 rounded-xl  bg-gradient-to-t from-[#f82500] from-60% to-[#FC8000] text-center md:text-left flex flex-col gap-2'>
+                <div key={index} className='p-4 rounded-xl  bg-gradient-to-t from-[#f82500] from-60% to-[#FC8000] text-center md:text-left flex flex-col gap-2 shadow-lg'>
                     <h1 className=' border-b  font-bold text-lg text-white'>{miss.name}</h1>
                     {miss.desc}
                 </div>

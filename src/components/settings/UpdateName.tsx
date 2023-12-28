@@ -1,8 +1,8 @@
 import { pool } from '@/utils/db'
 import React from 'react'
 import Button from './Button'
-const UpdateName = ({ id, name }: { id: string | null | undefined, name: string | null | undefined }) => {
-    if (!name) {
+const UpdateName = ({ id, name, email }: { id: string | null | undefined, name: string | null | undefined , email: string | null | undefined}) => {
+    if (!name && !email) {
         return (
             <div>Error</div>
         )
@@ -26,7 +26,7 @@ const UpdateName = ({ id, name }: { id: string | null | undefined, name: string 
         <div className='flex items-center justify-center  text-center md:text-left md:justify-start'>
             <form className='flex flex-col' action={updateName}>
                 <label> Update Name: </label>
-                <input name='name' placeholder={name} type="text" className='text-black px-1 py-2 rounded-t-xl' />
+                <input name='name' placeholder={name ? name : email ? email : 'example@email.com'} type="text" className='text-black px-1 py-2 rounded-t-xl' />
                 <Button />
             </form>
         </div>

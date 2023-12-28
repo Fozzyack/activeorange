@@ -24,7 +24,7 @@ const page = async () => {
     return (
         <div className='flex flex-col w-full text-white gap-4 items-center md:items-start'>
             <h1 className='text-5xl font-bold underline'>Settings</h1>
-            <UpdateName id={session.user.id} name={session.user.name}/>
+            <UpdateName id={session.user.id} name={session.user.name} email={session.user.email}/>
             <UploadFile />
         </div>
 

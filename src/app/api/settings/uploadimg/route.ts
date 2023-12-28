@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const path = join('public/uploads/', name)
     await pool.query(sql, [''.concat('/uploads/', name), session.user?.id])
     const existingImagePath = join('public', session.user?.image || '');
-    if (fs.existsSync(existingImagePath)) {
+    if (fs.existsSync(existingImagePath) && session.user?.image) {
         try {
             fs.unlinkSync(existingImagePath);
         } catch (error) {
