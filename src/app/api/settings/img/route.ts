@@ -2,6 +2,7 @@ import { Session, getServerSession } from "next-auth";
 import { options } from "../../auth/[...nextauth]/options";
 import { pool } from "@/utils/db";
 export const dynamic = "force-dynamic"
+const MAX_FILE_SIZE_MB = 5;
 interface ExtendedUserSession extends Session {
     user: {
         name?: string | null | undefined;
@@ -11,7 +12,7 @@ interface ExtendedUserSession extends Session {
     } | undefined
 }
 
-const MAX_FILE_SIZE_MB = 5;
+
 
 
 
@@ -40,10 +41,10 @@ export async function POST(request: Request) {
 
         const bytes = await file.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        
+
         const wow = await pool.query(sql, [true, buffer, file.type, session.user?.id])
         console.log(wow.rows[0])
-        return Response.json({success: true})
+        return Response.json({ success: true })
     } catch (error: any) {
         Response.json({ success: false, error: error.message }, { status: 500 })
 
@@ -51,7 +52,8 @@ export async function POST(request: Request) {
 
 }
 
-export async function GET(request : Request) {
+export async function GET(request: Request) {
+    
     try {
         const session = await getServerSession(options) as ExtendedUserSession
         const sql = `SELECT uploaded_image, image_data, image_type FROM users WHERE id=$1`
@@ -59,6 +61,6 @@ export async function GET(request : Request) {
         return Response.json(data.rows[0])
     } catch (error: any) {
         console.log(error.message)
-        Response.json({error: error.message}, {status: 500})
+        Response.json({ error: error.message }, { status: 500 })
     }
 }
