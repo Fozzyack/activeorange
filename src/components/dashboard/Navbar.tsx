@@ -58,24 +58,11 @@ const LINKS = [
                 <path d="M9 1.334C7.06.594 1.646-.84.293.653a1.158 1.158 0 0 0-.293.77v13.973c0 .193.046.383.134.55.088.167.214.306.366.403a.932.932 0 0 0 .5.147c.176 0 .348-.05.5-.147 1.059-.32 6.265.851 7.5 1.65V1.334ZM19.707.653C18.353-.84 12.94.593 11 1.333V18c1.234-.799 6.436-1.968 7.5-1.65a.931.931 0 0 0 .5.147.931.931 0 0 0 .5-.148c.152-.096.279-.235.366-.403.088-.167.134-.357.134-.55V1.423a1.158 1.158 0 0 0-.293-.77Z" />
             </svg>
     },
-    {
-        id: 5,
-        name: 'Profile',
-        href: '/dashboard/profile',
-        image:
-            <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                <path d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.157-.625A3.427 3.427 0 0 1 6.5 9.571a3.426 3.426 0 0 1 3.322 2.805l.159.622-6.967.023ZM16 12h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Z" />
-            </svg>
-    }
 ]
 
 
-const getProfilePicture = async () => {
-
-}
 const Navbar = () => {
     const { data: Session } = useSession()
-    const [selected, setSelected] = React.useState<number | null>(null)
     const [uploadedImage, setUploadedImage] = React.useState(false)
     const [imageSrc, setImageSrc] = React.useState('');
 
@@ -103,7 +90,7 @@ const Navbar = () => {
         <div className='bg-[#1E2229] flex flex-col items-center text-white rounded-xl shadow-xl p-7 divide-y divide-gray-500 fixed max-h-[75%] mt-16 md:max-h-[100%] md:mt-0 mr-10 md:mr-0 z-50 overflow-auto ' >
 
             <div className=' mb-5 w-full bg-[#DD8233] hover:bg-[#7a512d] px-2 rounded-xl shadow-lg transition ease-in-out '>
-                <Link onClick={() => setSelected(null)} href={'/dashboard'} className='flex flex-row items-center py-1 gap-2'>
+                <Link href={'/dashboard'} className='flex flex-row items-center py-1 gap-2'>
                     <div className='shadow-lg rounded-xl'>
                         <Image src='/icon.png' alt='Logo' width={64} height={64} />
                     </div>
@@ -134,7 +121,7 @@ const Navbar = () => {
                 <div className='my-5 flex flex-col gap-4'>
                     {
                         LINKS.map((link, index) => (
-                            <NavLink link={link} key={index} selected={selected} setSelected={setSelected} />
+                            <NavLink link={link} key={index}/>
                         ))
                     }
                 </div>

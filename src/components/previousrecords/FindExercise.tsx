@@ -32,6 +32,7 @@ const FindExercise = ({ records }: { records: records }) => {
         hide: { opacity: 0 }
     }
 
+    
     useEffect(() => {
         setDisplayRecords(records.data.filter(record => record.date_recorded.toDateString() === selectedDate))
     }, [selectedDate])

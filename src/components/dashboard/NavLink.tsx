@@ -2,23 +2,22 @@
 import Link from 'next/link'
 import React from 'react'
 import { motion } from 'framer-motion'
-const NavLink = ({ link, selected, setSelected }: {
-    link: { id: number, name: string, href: string, image: JSX.Element },
-    selected: number | null,
-    setSelected: React.Dispatch<React.SetStateAction<number | null>>
+import { usePathname } from 'next/navigation'
+const NavLink = ({ link}: {
+    link: { id: number, name: string, href: string, image: JSX.Element }
 }) => {
-
+    const path = usePathname()
     const background = {
         highlight: {opacity: 1, backgroundColor: ['#1E2229', '#DD8233']},
         nohighlight : {}
     }
-
+    console.log(path)
     return (
-        <Link onClick={() => { setSelected(link.id) }} href={link.href} className='flex flex-row gap-2 items-center'>
+        <Link href={link.href} className='flex flex-row gap-2 items-center'>
             
                 <motion.div
+                animate={path === link.href ? 'highlight' : 'nohighlight'}
                 variants={background}
-                    animate={link.id === selected ? 'highlight' : 'nohighlight'}
                     className='p-3 rounded-xl'
                 >
                     {link.image}
