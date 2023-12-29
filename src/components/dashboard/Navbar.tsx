@@ -82,7 +82,7 @@ const Navbar = () => {
         }
     }
 
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         getProfilePicture()
     }, [])
     console.log(imageSrc)
