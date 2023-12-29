@@ -11,7 +11,6 @@ const NavLink = ({ link}: {
         highlight: {opacity: 1, backgroundColor: ['#1E2229', '#DD8233']},
         nohighlight : {}
     }
-    console.log(path)
     return (
         <Link href={link.href} className='flex flex-row gap-2 items-center'>
             

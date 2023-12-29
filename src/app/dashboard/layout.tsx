@@ -18,7 +18,6 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
         <div className='col-span-7 lg:col-span-9 pt-20 px-5 pb-5 md:p-0 '>
         {children}
         </div>
-        
       </div>
 
   )
