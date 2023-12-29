@@ -3,24 +3,26 @@ import Link from 'next/link'
 import React from 'react'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-const NavLink = ({ link}: {
+
+type link = {
     link: { id: number, name: string, href: string, image: JSX.Element }
-}) => {
+}
+const NavLink = ({ link }: link) => {
     const path = usePathname()
     const background = {
-        highlight: {opacity: 1, backgroundColor: ['#1E2229', '#DD8233']},
-        nohighlight : {}
+        highlight: { opacity: 1, backgroundColor: ['#1E2229', '#DD8233'] },
+        nohighlight: {}
     }
     return (
         <Link href={link.href} className='flex flex-row gap-2 items-center'>
-            
-                <motion.div
+
+            <motion.div
                 animate={path === link.href ? 'highlight' : 'nohighlight'}
                 variants={background}
-                    className='p-3 rounded-xl'
-                >
-                    {link.image}
-                </motion.div>
+                className='p-3 rounded-xl'
+            >
+                {link.image}
+            </motion.div>
             <div className='relative group'>
                 <span>
                     {link.name}

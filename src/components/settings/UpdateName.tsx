@@ -1,6 +1,5 @@
 import { pool } from '@/utils/db'
 import React from 'react'
-import Button from './Button'
 const UpdateName = ({ id, name, email }: { id: string | null | undefined, name: string | null | undefined , email: string | null | undefined}) => {
     if (!name && !email) {
         return (
@@ -27,7 +26,7 @@ const UpdateName = ({ id, name, email }: { id: string | null | undefined, name: 
             <form className='flex flex-col' action={updateName}>
                 <label> Update Name: </label>
                 <input name='name' placeholder={name ? name : email ? email : 'example@email.com'} type="text" className='text-black px-1 py-2 rounded-t-xl' />
-                <Button />
+                <button type='submit' className='px-2 py-1 bg-orange-600 rounded-b-xl'>Update</button>
             </form>
         </div>
     )
