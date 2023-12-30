@@ -2,7 +2,7 @@
 import Loader from '@/components/common/Loader';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import React from 'react'
+import React, { Fragment } from 'react'
 
 const ProfilePicture = () => {
 
@@ -37,7 +37,7 @@ const ProfilePicture = () => {
 
     const classnames = 'rounded-full p-1'
     return (
-        <div>
+        <Fragment>
             <div className='bg-gradient-to-t from-[#E85817] from-60% to-[#e0bf9a] rounded-full'>
                 {
                     loading ?
@@ -47,10 +47,14 @@ const ProfilePicture = () => {
                         </div>
 
                         :
-                        uploadedImage ? <Image src={imageSrc} alt='Profile Picture' width={100} height={100} className={classnames} /> : <Image src={session?.user?.image as string} alt='Profile Picture' width={100} height={100} className={classnames} />}
+                        session?.user?.image || uploadedImage ?
+                            uploadedImage ? <Image src={imageSrc} alt='Profile Picture' width={100} height={100} className={classnames} />
+                                : <Image src={session?.user?.image as string} alt='Profile Picture' width={100} height={100} className={classnames} />
+                            : null
+                }
             </div>
 
-        </div>
+        </Fragment>
     )
 }
 

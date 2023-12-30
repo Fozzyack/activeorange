@@ -31,7 +31,7 @@ const Navbar = () => {
             <div className='w-full'>
                 <div className='flex flex-col items-center gap-4 mt-5'>
                     <ProfilePicture />
-                    <p className='text-transparent bg-clip-text text-lg  bg-gradient-to-t from-orange-600 to-orange-400'>{Session?.user?.name}</p>
+                    <p className='text-transparent bg-clip-text text-lg  bg-gradient-to-t from-orange-600 to-orange-400'>{Session?.user?.name ? Session?.user?.name : Session?.user?.email}</p>
                 </div>
             </div>
             <div className='mt-5 flex flex-col w-full items-center'>
