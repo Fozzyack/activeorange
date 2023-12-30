@@ -2,8 +2,8 @@
 import { options } from '@/app/api/auth/[...nextauth]/options'
 import { pool } from '@/utils/db'
 import { Session, getServerSession } from 'next-auth'
-import React from 'react'
-
+import React, { Fragment } from 'react'
+import ExerciseChart from '../Review/ExerciseChart'
 interface ExtendedUserSession extends Session {
     user?: {
         id?: string | null | undefined,
@@ -17,7 +17,7 @@ async function getRecords() {
     try {
 
         const session = await getServerSession(options) as ExtendedUserSession
-        const sql = `SELECT sets, reps, weight, rpe, name FROM record_weight JOIN exercises_weight ON exercises_weight.id=record_weight."exerciseId" WHERE "userId"=$1 ORDER BY date_recorded DESC LIMIT 20`
+        const sql = `SELECT exercises_weight.id, sets, reps, weight, rpe, name FROM record_weight JOIN exercises_weight ON exercises_weight.id=record_weight."exerciseId" WHERE "userId"=$1 ORDER BY date_recorded DESC LIMIT 3`
         const response = await pool.query(sql, [session.user?.id])
         return {
             error: null,
@@ -37,53 +37,68 @@ async function getRecords() {
 const RecentlyRecorded = async () => {
     const records = await getRecords()
     return (
-        <div className='items-center p-4 bg-[#DD8233] rounded-xl shadow-xl gap-4 w-full'>
-
-            {
-                records.error ? <div>
-                    <p>There was An Error Fetching the Data</p>
-                </div> :
-                    records.data.length === 0 ?
-                        <div>
-                            <h1 className='text-3xl'>Record Something to display it!</h1>
-                        </div>
-                        :
-                        <div className='flex flex-col gap-4 w-full'>
+        <Fragment >
 
 
-                            <h1 className='bg-[#1E2229] rounded-full text-white px-4 py-3 shadow-xl text-center'> Recently Recorded</h1>
-                            <div className='w-full overflow-auto'>
-                                <table className='text-white table-auto bg-slate-800 border-collapse border-spacing-2 w-full rounded-3xl b'>
-                                    <thead>
-                                        <tr>
-                                            <th className='p-3 border-r border-slate-400'>Name</th>
-                                            <th className='p-3 border-r border-slate-400'>Sets</th>
-                                            <th className='p-3 border-r border-slate-400'>Reps</th>
-                                            <th className='p-3 border-r border-slate-400'>Weight</th>
-                                            <th className='p-3 border-l border-slate-400'>RPE</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            records.data.map((record, index) => (
-                                                <tr key={index}>
-                                                    <td className='p-1 border-r border-t border-slate-400 '>{record.name}</td>
-                                                    <td className='p-1  border border-slate-400' >{record.sets}</td>
-                                                    <td className='p-1  border border-slate-400'>{record.reps}</td>
-                                                    <td className='p-1  border border-slate-400'>{record.weight}</td>
-                                                    <td className='p-1  border-l border-t border-slate-400'>{record.rpe}</td>
-                                                </tr>
+            <div className='items-center p-4 bg-[#f05b40] rounded-xl shadow-xl gap-4 flex text-center flex-col'>
 
-                                            ))
-                                        }
-                                    </tbody>
-                                </table>
+                {
+                    records.error ? <div>
+                        <p>There was An Error Fetching the Data</p>
+                    </div> :
+                        records.data.length === 0 ?
+                            <div>
+                                <h1 className=''>Record Something to display it!</h1>
                             </div>
+                            :
+                            <div className='flex flex-col gap-4 w-full'>
 
+
+                                <h1 className='bg-[#1E2229] rounded-full text-white px-4 py-3 shadow-xl text-center'> Recently Recorded</h1>
+                                <div className='w-full overflow-auto'>
+                                    <table className='text-white table-auto bg-slate-800 border-collapse border-spacing-2 w-full rounded-3xl b'>
+                                        <thead>
+                                            <tr>
+                                                <th className='p-3 border-r border-slate-400'>Name</th>
+                                                <th className='p-3 border-r border-slate-400'>Sets</th>
+                                                <th className='p-3 border-r border-slate-400'>Reps</th>
+                                                <th className='p-3 border-r border-slate-400'>Weight</th>
+                                                <th className='p-3 border-l border-slate-400'>RPE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                records.data.map((record, index) => (
+                                                    <tr key={index}>
+                                                        <td className='p-1 border-r border-t border-slate-400 '>{record.name}</td>
+                                                        <td className='p-1  border border-slate-400' >{record.sets}</td>
+                                                        <td className='p-1  border border-slate-400'>{record.reps}</td>
+                                                        <td className='p-1  border border-slate-400'>{record.weight}</td>
+                                                        <td className='p-1  border-l border-t border-slate-400'>{record.rpe}</td>
+                                                    </tr>
+
+                                                ))
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                }
+                {
+                    records.data.map((record, index) => (
+                        <div key={index} className='flex flex-col'>
+                            <h1 className='text-white underline'>{record.name}</h1>
+                            <ExerciseChart id={record.id} selectedExercises={null} />
                         </div>
-            }
+                    ))
 
-        </div>
+                }
+
+
+            </div>
+
+        </Fragment>
     )
 }
 

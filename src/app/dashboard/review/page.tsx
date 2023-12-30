@@ -39,7 +39,7 @@ const Page = () => {
                 selectedExercises.map((exercise, index) => (
                     <div className='w-full' key={index}>
                         <h1 className='text-orange-600 font-bold text-2xl text-center'>{exercise.name}</h1>
-                        <ExerciseChart id={exercise.id}/>
+                        <ExerciseChart id={exercise.id} selectedExercises={selectedExercises}/>
                     </div>
                 ))
             }

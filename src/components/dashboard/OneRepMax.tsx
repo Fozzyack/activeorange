@@ -40,7 +40,7 @@ const OneRepMax = async () => {
                     <p>There was an Error fetching the data</p>
                 </div> :
                 oneRMS.data.length === 0 ?
-                    <div className='p-3 bg-slate-600 rounded-xl shadow-xl text-4xl text-white'> <h1>Go Crazy First <br /> Record a 1RM</h1></div>
+                    <div className='p-3 bg-slate-600 rounded-xl shadow-xl text-white'> <h1>Go Crazy First <br /> Record a 1RM</h1></div>
                     :
                     <div className='flex flex-col'>
 

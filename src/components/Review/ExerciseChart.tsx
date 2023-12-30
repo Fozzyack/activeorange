@@ -10,7 +10,7 @@ import {
     Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-
+import { useRouter } from "next/navigation";
 // Register ChartJS components using ChartJS.register
 ChartJS.register(
     CategoryScale,
@@ -30,8 +30,13 @@ interface data {
     log: string,
     date_recorded: string
 }
-const ExerciseChart = ({ id}: { id: number }) => {
 
+interface Exercise {
+    name: string;
+    id: number;
+}
+const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercises: Exercise[] | null }) => {
+    const router = useRouter()
     const [data, setData] = React.useState<data[]>([])
     const getData = async () => {
         const res = await fetch(`/api/weights/exercises/chart/${id}`, {
@@ -43,11 +48,26 @@ const ExerciseChart = ({ id}: { id: number }) => {
 
         const data = await res.json()
         setData(data)
+        router.refresh()
     }
 
-    React.useEffect(() => {
-        getData()
-    }, [])
+    if (selectedExercises) {
+        React.useLayoutEffect(() => {
+            getData()
+        }, [selectedExercises])
+    } else {
+        React.useLayoutEffect(() => {
+            getData()
+        }, [])
+    }
+
+    if (data.length === 0) {
+        return (
+            <div className="w-full flex text-center justify-center text-white">
+                <h1>No Data to display for this exercise</h1>
+            </div>
+        )
+    }
 
     return (
         <div className="md:grid md:grid-cols-2 gap-3 w-full w-max-screen">
@@ -55,7 +75,7 @@ const ExerciseChart = ({ id}: { id: number }) => {
                 <h4 className="text-center text-white font-bold text-lg py-3">Weight Graph</h4>
                 <Line
                     className="p-1 rounded-xl bg-slate-800"
-                    
+
                     data={{
                         labels: data.map(entree => new Date(Date.parse(entree.date_recorded)).toLocaleDateString()),
                         datasets: [
