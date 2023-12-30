@@ -16,7 +16,7 @@ export default function Home() {
         <div className='px-12 md:px-24 text-white'>
           <OurMission />
         </div>
-        <div className=' px-12 md:px-24 text-white'>
+        <div id='whatthisdoes' className=' px-12 md:px-24 text-white'>
           <KeyFeatures />
         </div>
         <div className=' px-12 md:px-24 text-white'>

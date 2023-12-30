@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 const FEATURES = [
@@ -32,7 +33,7 @@ const FEATURES = [
 ]
 const KeyFeatures = () => {
     return (
-        <div id='whatthisdoes' className='flex flex-col md:grid md:grid-cols-5 w-full items-center mt-24 gap-4'>
+        <div  className='flex flex-col md:grid md:grid-cols-5 w-full items-center mt-24 gap-4'>
             <div className='col-span-2'>
                 <h1 className='text-transparent bg-clip-text bg-[#E84000] text-5xl font-bold text-center'>
                     What This Does
