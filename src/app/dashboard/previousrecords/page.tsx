@@ -27,6 +27,7 @@ interface records {
     error: null | boolean;
     data: record[];
 } 
+export const revalidate = 1
 async function getRecords() {
     try {
 

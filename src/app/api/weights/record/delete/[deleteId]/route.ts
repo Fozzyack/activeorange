@@ -1,15 +1,9 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import { ExtendedServerSession } from "@/types/types";
 import { pool } from "@/utils/db";
-import { Session, getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 
-interface ExtendedServerSession extends Session {
-    user?: {
-        id?: string | null | undefined,
-        email?: string | null | undefined,
-        name?: string | null | undefined,
-        image?: string | null | undefined,
-    } | undefined
-}
+
 export const dynamic = "force-dynamic"
 export async function DELETE(request: Request, {params} : {params: {deleteId: string}}) {
     try {
