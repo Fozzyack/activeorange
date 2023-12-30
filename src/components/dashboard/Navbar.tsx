@@ -20,7 +20,7 @@ const Navbar = () => {
             animate={{opacity: 1, y: 0}}
             className='bg-[#1E2229] flex flex-col items-center text-white rounded-xl shadow-xl p-7 divide-y divide-gray-500 fixed max-h-[75%] mt-16 md:max-h-[100%] md:mt-0 mr-10 md:mr-0 z-50 overflow-auto ' >
 
-            <div className=' mb-5 w-full bg-[#DD8233] hover:bg-[#7a512d] px-2 rounded-xl shadow-lg transition ease-in-out '>
+            <div className=' mb-5 w-full bg-[#DD8233] hover:bg-orange-700 px-2 rounded-xl shadow-lg transition ease-in-out '>
                 <Link href={'/dashboard'} className='flex flex-row items-center py-1 gap-2'>
                     <div className='shadow-lg rounded-xl'>
                         <Image src='/icon.png' alt='Logo' width={64} height={64} />
@@ -31,7 +31,7 @@ const Navbar = () => {
             <div className='w-full'>
                 <div className='flex flex-col items-center gap-4 mt-5'>
                     <ProfilePicture />
-                    <p>{Session?.user?.name}</p>
+                    <p className='text-transparent bg-clip-text text-lg  bg-gradient-to-t from-orange-600 to-orange-400'>{Session?.user?.name}</p>
                 </div>
             </div>
             <div className='mt-5 flex flex-col w-full items-center'>
