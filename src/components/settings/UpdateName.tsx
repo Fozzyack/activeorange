@@ -27,9 +27,8 @@ const UpdateName = ({ id, name, email }: { id: string | null | undefined, name: 
     }
 
     return (
-        <div className='flex items-center justify-center  text-center md:text-left md:justify-start'>
+        <div className='items-center justify-center  text-center md:text-left md:justify-start flex flex-col'>
             <form className='flex flex-col' action={updateName}>
-                <label> Update Name: </label>
                 <input name='name' placeholder={name ? name : email ? email : 'example@email.com'} type="text" className='text-black px-1 py-2 rounded-t-xl' />
                 <RefreshPageButton />
             </form>

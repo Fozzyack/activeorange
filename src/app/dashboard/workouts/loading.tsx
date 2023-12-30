@@ -1,9 +1,8 @@
+import ServerLoader from '@/components/common/ServerLoader'
 import React from 'react'
 
 const Loading = () => {
-  return (
-    <div className='text-white font-bold text-5xl'>Loading...</div>
-  )
+  return <ServerLoader />
 }
 
 export default Loading

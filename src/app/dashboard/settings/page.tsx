@@ -22,10 +22,21 @@ const page = async () => {
     }
     console.log(session)
     return (
-        <div className='flex flex-col w-full text-white gap-4 items-center md:items-start'>
+        <div className='flex flex-col w-full text-white gap-4 items-center md:items-start rounded-xl'>
             <h1 className='text-5xl font-bold underline'>Settings</h1>
-            <UpdateName id={session.user.id} name={session.user.name} email={session.user.email} />
-            <UploadFile />
+            <div className='w-full pr-20 flex flex-col gap-4'>
+                <h1 className='underline'>Profile:</h1>
+                <div className='flex flex-col md:flex-row justify-between '>
+                    <h1 className=''>Edit Display Name: </h1>
+                    <UpdateName id={session.user.id} name={session.user.name} email={session.user.email} />
+                </div>
+                <div className='flex flex-col md:flex-row gap-4 justify-between'>
+                    <h1>Profile Picture: </h1>
+                    <UploadFile />
+                </div>
+
+            </div>
+
         </div>
 
     )
