@@ -70,29 +70,48 @@ const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercise
     }
 
     return (
-        <div className="md:grid md:grid-cols-2 gap-3 w-full w-max-screen">
-            <div>
+        <div className="w-full w-max-screen">
+            <p className="text-center text-[0.7rem] text-slate-500">Note: Click the labels to Hide</p>
+            {/* <div>
                 <h4 className="text-center text-white font-bold text-lg py-3">Weight Graph</h4>
                 <Line
-                    className="p-1 rounded-xl bg-slate-800"
+                    className="p-1 rounded-xl bg-[#1B1F38]"
+                    options={{
+                        animations: {
+                            tension: {
 
+                            }
+                        }
+                    }}  
                     data={{
                         labels: data.map(entree => new Date(Date.parse(entree.date_recorded)).toLocaleDateString()),
                         datasets: [
                             {
                                 label: 'Weight',
                                 data: data.map(entree => entree.weight),
-                                backgroundColor: "purple",
-                                borderColor: 'purple',
+                                backgroundColor: "#F87D12",
+                                borderColor: '#F87D12',
                             },
                         ],
                     }}
                 />
-            </div>
+            </div> */}
             <div>
                 <h4 className="text-center text-white font-bold text-lg py-3 ">Sets Reps And RPE Graph</h4>
                 <Line
-                    className=" p-1 rounded-xl bg-slate-800"
+                    className=" p-1 rounded-xl bg-[#1B1F38]"
+                    options={{
+                        animations: {
+                            tension: {
+                                duration: 1000,
+                                easing: 'linear',
+                                from: 1,
+                                to: 0,
+                                loop: true
+                              },
+                        
+                        },
+                    }}
                     data={{
 
                         labels: data.map(entree => new Date(Date.parse(entree.date_recorded)).toLocaleDateString()),
@@ -100,20 +119,26 @@ const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercise
                             {
                                 label: "Sets",
                                 data: data.map(entree => entree.sets.toString()),
-                                backgroundColor: "green",
-                                borderColor: 'green'
+                                backgroundColor: "#E5D352",
+                                borderColor: '#E5D352'
                             },
                             {
                                 label: "Reps",
                                 data: data.map(entree => entree.reps.toString()),
-                                backgroundColor: "blue",
-                                borderColor: 'blue'
+                                backgroundColor: "#AC3931",
+                                borderColor: '#AC3931'
                             },
                             {
                                 label: "RPE",
                                 data: data.map(entree => entree.rpe.toString()),
-                                backgroundColor: "red",
-                                borderColor: 'red'
+                                backgroundColor: "#F87D12",
+                                borderColor: '#F87D12'
+                            },
+                            {
+                                label: 'Weight',
+                                data: data.map(entree => entree.weight),
+                                backgroundColor: "#690500",
+                                borderColor: '#690500',
                             },
                         ],
                     }}
