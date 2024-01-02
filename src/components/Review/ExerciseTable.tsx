@@ -85,7 +85,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
         <div className='text-white'>
             <h3 className='underline text-[2rem] font-bold my-2'>Recorded Exercises</h3>
             <input className='text-black p-2 rounded-xl mt-3' type="text" onChange={(e) => handleSearch(e)} />
-            <div className='grid grid-cols-3 gap-4 mt-4'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mt-4'>
                 {
                     records
                     .filter(record => record.name.toLowerCase().includes(search.toLowerCase()))
