@@ -85,30 +85,33 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
         <div className='text-white'>
             <h3 className='underline text-[2rem] font-bold my-2'>Recorded Exercises</h3>
             <input className='text-black p-2 rounded-xl mt-3' type="text" onChange={(e) => handleSearch(e)} />
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mt-4'>
+            <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
                 {
                     records
-                    .filter(record => record.name.toLowerCase().includes(search.toLowerCase()))
-                    .filter(record => {
-                        var update_record = true;
-                        selectedExercises.forEach(element => {
-                            if(element.name === record.name) update_record = false; 
+                        .filter(record => record.name.toLowerCase().includes(search.toLowerCase()))
+                        .filter(record => {
+                            var update_record = true;
+                            selectedExercises.forEach(element => {
+                                if (element.name === record.name) update_record = false;
+                            })
+                            return update_record
                         })
-                        return update_record
-                    })
-                    .map((record, index) => (
+                        .map((record, index) => (
 
-                        <div className='border-slate-400 p-4 justify-center items-center border rounded-xl shadow-xl  text-center' key={index} >
-                            <h3>
-                                {record.name}
-                            </h3>
-                            <button className='bg-[#F87D12] px-3 py-2 rounded-xl bg mt-3 hover:bg-[#8ACB88] transition ease-in-out' onClick={() => {
-                                setSelectedExercises(prev => [...prev, { name: record.name, id: record.exerciseId }])
-                            }}>Select</button>
-                        </div>
+                            <div className='border-slate-400 p-4 rounded-xl shadow-xl border' key={index} >
+                                <div className='flex flex-col text-center items-center justify-center'>
+                                    <h3>
+                                        {record.name}
+                                    </h3>
+                                    <button className='bg-[#F87D12] px-3 py-2 rounded-xl bg mt-3 hover:bg-[#8ACB88] transition ease-in-out' onClick={() => {
+                                        setSelectedExercises(prev => [...prev, { name: record.name, id: record.exerciseId }])
+                                    }}>Select</button>
+                                </div>
+
+                            </div>
 
 
-                    ))
+                        ))
                 }
             </div>
         </div >
