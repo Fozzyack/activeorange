@@ -5,7 +5,7 @@ import React from 'react'
 const page = async () => {
 
   return (
-    <div className='w-full md:grid md:grid-cols-4 gap-2'>
+    <div className='w-full lg:grid md:grid-cols-4 gap-2'>
       <div className='col-span-3'>
         <RecentlyRecorded />
       </div>
