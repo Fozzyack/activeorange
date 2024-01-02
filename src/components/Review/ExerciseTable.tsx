@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
-import { motion } from 'framer-motion'
+import { matchWords } from '@/functions/functions';
+import { records } from '@/types/types';
 
 
 interface ExerciseComponentProps {
@@ -14,10 +15,9 @@ interface ExerciseComponentProps {
         id: number;
     }[]>>;
 }
-type records = {
-    name: string;
-    exerciseId: number;
-}[]
+
+
+
 const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComponentProps) => {
 
     const [records, setRecords] = React.useState<records>([])
@@ -88,7 +88,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
             <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
                 {
                     records
-                        .filter(record => record.name.toLowerCase().includes(search.toLowerCase()))
+                        .filter(record => matchWords(record.name, search))
                         .filter(record => {
                             var update_record = true;
                             selectedExercises.forEach(element => {

@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { motion } from 'framer-motion'
+import { matchWords } from '@/functions/functions'
 const ExerciseList = () => {
 
     const [exercises, setExercises] = React.useState([{
@@ -96,7 +97,7 @@ const ExerciseList = () => {
 
             </div>
 
-            
+
             <table className='table table-fixed border-separate border border-slate-500 w-full'>
                 <thead>
                     <tr>
@@ -107,7 +108,8 @@ const ExerciseList = () => {
                 </thead>
                 <tbody>
                     {
-                        exercises.filter((exercise) => exercise.e_name.toLowerCase().includes(search.toLowerCase()) || exercise.m_name.toLowerCase().includes(search.toLowerCase())).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
+                        exercises.filter((exercise) => matchWords(exercise.e_name, search) || matchWords(exercise.m_name, search))
+                        .slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
                             <motion.tr key={index}
                                 initial={{ opacity: 0 }}
                                 animate={showRows}

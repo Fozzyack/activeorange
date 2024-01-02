@@ -8,3 +8,8 @@ export interface ExtendedServerSession extends Session {
         image?: string | null | undefined,
     } | undefined
 }
+
+export type records = {
+    name: string;
+    exerciseId: number;
+}[]
