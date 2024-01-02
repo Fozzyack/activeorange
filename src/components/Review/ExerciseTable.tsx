@@ -75,7 +75,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
         })
         if (!res.ok) throw new Error('Error getting Records from Server')
         const data = await res.json()
-    console.log(data)
+        console.log(data)
         setRecords(data)
     }
     React.useEffect(() => {
@@ -84,22 +84,31 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
     return (
         <div className='text-white'>
             <h3 className='underline text-[2rem] font-bold my-2'>Recorded Exercises</h3>
-            <input className='text-black' type="text" onChange={(e) => handleSearch(e)} />
-            <div>
+            <input className='text-black p-2 rounded-xl mt-3' type="text" onChange={(e) => handleSearch(e)} />
+            <div className='grid grid-cols-3 gap-4 mt-4'>
                 {
-                    records.filter(record => record.name.toLowerCase().includes(search.toLowerCase())).map((record, index) => {
-                        return (
-                            < div className='flex flex-col ' key={index} >
-                                <h3>
-                                    {record.name}
-                                </h3>
-                                <button onClick={() => {
-                                    setSelectedExercises(prev => [...prev, {name: record.name, id: record.exerciseId}])
-                                }}>Select</button>
-                            </div>
-                        )
-
+                    records
+                    .filter(record => record.name.toLowerCase().includes(search.toLowerCase()))
+                    .filter(record => {
+                        var update_record = true;
+                        selectedExercises.forEach(element => {
+                            if(element.name === record.name) update_record = false; 
+                        })
+                        return update_record
                     })
+                    .map((record, index) => (
+
+                        <div className='border-slate-400 p-4 justify-center items-center border rounded-xl shadow-xl  text-center' key={index} >
+                            <h3>
+                                {record.name}
+                            </h3>
+                            <button className='bg-[#F87D12] px-3 py-2 rounded-xl bg mt-3 hover:bg-[#8ACB88] transition ease-in-out' onClick={() => {
+                                setSelectedExercises(prev => [...prev, { name: record.name, id: record.exerciseId }])
+                            }}>Select</button>
+                        </div>
+
+
+                    ))
                 }
             </div>
         </div >
