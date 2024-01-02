@@ -73,7 +73,7 @@ const FindExercise = ({ records }: { records: records }) => {
                             animate={show ? 'show' : 'hide'}
                             variants={variants}
                             transition={{ delay: 0.2 * (index + 1) }}
-                            className='p-3 bg-[#2e3542] rounded-xl shadow-xl'
+                            className='p-3 bg-[#1B1F38] rounded-xl shadow-xl'
                         >
                             <h3 className='text-lg font-bold text-white'>{record.name}</h3>
                             <div className='text-white flex gap-3 flex-wrap justify-center items-center'>

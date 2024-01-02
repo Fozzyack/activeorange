@@ -95,6 +95,8 @@ const ExerciseList = () => {
                 }
 
             </div>
+
+            
             <table className='table table-fixed border-separate border border-slate-500 w-full'>
                 <thead>
                     <tr>

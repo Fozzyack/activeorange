@@ -1,27 +1,26 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-interface exercises {
-    e_name: string,
-    m_name: string,
-    id: number
-}
+
 
 interface ExerciseComponentProps {
     selectedExercises: {
         name: string;
         id: number;
     }[];
+
     setSelectedExercises: React.Dispatch<React.SetStateAction<{
         name: string;
         id: number;
     }[]>>;
 }
-
+type records = {
+    name: string;
+    exerciseId: number;
+}[]
 const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComponentProps) => {
 
-    const [exercises, setExercises] = React.useState<exercises[]>([])
-    const [allExercises, setAllExercises] = React.useState<exercises[]>([])
+    const [records, setRecords] = React.useState<records>([])
     const [tableIndex, setTableIndex] = React.useState({
         start: 0,
         finish: 10
@@ -29,13 +28,13 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
     const [showRows, setShowRows] = React.useState<string>('show')
     const [search, setSearch] = React.useState('')
     const tr = {
-        hidden: {opacity: 0 },
-        show: {opacity: 1 },
+        hidden: { opacity: 0 },
+        show: { opacity: 1 },
     }
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setShowRows('hidden')
-        
+
         setTimeout(() => {
             setSearch(e.target.value)
             setTableIndex(previousState => { return { ...previousState, start: 0, finish: 10 } })
@@ -70,99 +69,40 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
         }, 1100)
 
     }
-
-    const getExercises = async () => {
-        const res = await fetch('/api/weights/exercises/getexercises', {
-            method: 'GET',
-            next: {revalidate: 1800}
+    const getRecords = async () => {
+        const res = await fetch('/api/weights/record/getrecords', {
+            method: 'GET'
         })
-        if (!res.ok) {
-            throw new Error('There was an error getting the exercise List')
-        }
-
+        if (!res.ok) throw new Error('Error getting Records from Server')
         const data = await res.json()
-        setExercises(data)
-        setAllExercises(data)
+    console.log(data)
+        setRecords(data)
     }
-
-
-    const selectExercise = (name: string, id: number) => {
-        const newExercises = { name, id }
-        setSelectedExercises(prevState => {
-            return [...prevState, newExercises]
-        })
-    }
-
     React.useEffect(() => {
-
-        setExercises(() => {
-
-            const id_list = selectedExercises.map(exercise => exercise.id)
-            return allExercises.filter(exercise => {
-                var add = true
-                for (var i = 0; i < id_list.length; i++) {
-                    if (id_list[i] === exercise.id) {
-                        add = false;
-                    }
-                } if (add === true) {
-                    return exercise
-                }
-            })
-        })
-
-    }, [selectedExercises])
-
-    React.useEffect(() => {
-        getExercises()
+        getRecords()
     }, [])
     return (
         <div className='text-white'>
-            <div className='flex flex-row gap-4 mb-5 w-full flex-wrap'>
-                <input type="text" className='text-black p-3 rounded-xl max-w-full' onChange={(e) => { handleSearch(e) }} />
+            <h3 className='underline text-[2rem] font-bold my-2'>Recorded Exercises</h3>
+            <input className='text-black' type="text" onChange={(e) => handleSearch(e)} />
+            <div>
                 {
-                    tableIndex.start != 0 ? <button className='p-4 items-center justify-center rounded-xl bg-orange-600' onClick={() => { goBack() }}>
-                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
-                        </svg>
-                    </button> : null
-                }
-                {
-                    tableIndex.finish <= exercises.filter((exercise) => exercise.e_name.toLowerCase().includes(search.toLowerCase())).length - 1 ? <button onClick={() => { goForward() }} className='p-4 flex items-center justify-center rounded-xl bg-orange-600'>
-                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
-                        </svg>
-                    </button> : null
-                }
+                    records.filter(record => record.name.toLowerCase().includes(search.toLowerCase())).map((record, index) => {
+                        return (
+                            < div className='flex flex-col ' key={index} >
+                                <h3>
+                                    {record.name}
+                                </h3>
+                                <button onClick={() => {
+                                    setSelectedExercises(prev => [...prev, {name: record.name, id: record.exerciseId}])
+                                }}>Select</button>
+                            </div>
+                        )
 
+                    })
+                }
             </div>
-            <table className='table table-fixed border-separate border border-slate-500 w-full'>
-                <thead>
-                    <tr>
-                        <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Exercise Name</th>
-                        <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Select</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        exercises.filter((exercise) => exercise.e_name.toLowerCase().includes(search.toLowerCase())).slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
-
-                            <motion.tr className='text-white'
-                                initial={{ opacity: 0}}
-                                animate={showRows}
-                                variants={tr}
-                                transition={{ delay: 0.1 * index }}
-                                key={index}
-                            >
-                                <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
-                                <td className='border w-full border-slate-700 p-2'>
-                                    <button className='bg-red-500 p-2 rounded-lg max-w-20 w-full' onClick={() => { selectExercise(exercise.e_name, exercise.id) }}>Select</button></td>
-                            </motion.tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-
-        </div>
+        </div >
     )
 }
 

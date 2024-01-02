@@ -10,7 +10,7 @@ type link = {
 const NavLink = ({ link }: link) => {
     const path = usePathname()
     const background = {
-        highlight: { opacity: 1, backgroundColor: ['#1E2229', '#DD8233'] },
+        highlight: { opacity: 1, backgroundColor: ['#1B1F38', '#F87D12'] },
         nohighlight: {}
     }
     return (

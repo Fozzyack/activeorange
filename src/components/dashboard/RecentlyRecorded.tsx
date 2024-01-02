@@ -40,7 +40,7 @@ const RecentlyRecorded = async () => {
         <Fragment >
 
 
-            <div className='items-center p-4 bg-[#f05b40] rounded-xl shadow-xl gap-4 flex text-center flex-col'>
+            <div className='items-center p-4 bg-[#1B1F38] rounded-xl shadow-xl gap-4 flex text-center flex-col'>
 
                 {
                     records.error ? <div>
@@ -54,7 +54,7 @@ const RecentlyRecorded = async () => {
                             <div className='flex flex-col gap-4 w-full'>
 
 
-                                <h1 className='bg-[#1E2229] rounded-full text-white px-4 py-3 shadow-xl text-center'> Recently Recorded</h1>
+                                <h1 className='bg-[#F87D12] rounded-full text-white px-4 py-3 shadow-xl text-center'> Recently Recorded</h1>
                                 <div className='w-full overflow-auto'>
                                     <table className='text-white table-auto bg-slate-800 border-collapse border-spacing-2 w-full rounded-3xl b'>
                                         <thead>
