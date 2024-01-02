@@ -70,8 +70,8 @@ const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercise
     }
 
     return (
-        <div className="w-full w-max-screen">
-            <p className="text-center text-[0.7rem] text-slate-500">Note: Click the labels to Hide</p>
+        <div className="w-full">
+            <p className="text-center text-[0.7rem] text-slate-500">Note: Click the labels to Hide or Show Values</p>
             {/* <div>
                 <h4 className="text-center text-white font-bold text-lg py-3">Weight Graph</h4>
                 <Line
@@ -120,25 +120,29 @@ const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercise
                                 label: "Sets",
                                 data: data.map(entree => entree.sets.toString()),
                                 backgroundColor: "#E5D352",
-                                borderColor: '#E5D352'
+                                borderColor: '#E5D352',
+                                hidden: true
                             },
                             {
                                 label: "Reps",
                                 data: data.map(entree => entree.reps.toString()),
                                 backgroundColor: "#AC3931",
-                                borderColor: '#AC3931'
+                                borderColor: '#AC3931',
+                                hidden: true
                             },
                             {
                                 label: "RPE",
                                 data: data.map(entree => entree.rpe.toString()),
                                 backgroundColor: "#F87D12",
-                                borderColor: '#F87D12'
+                                borderColor: '#F87D12',
+                                hidden: true
                             },
                             {
                                 label: 'Weight',
                                 data: data.map(entree => entree.weight),
                                 backgroundColor: "#690500",
                                 borderColor: '#690500',
+                                hidden: false
                             },
                         ],
                     }}

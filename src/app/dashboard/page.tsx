@@ -3,11 +3,16 @@ import RecentlyRecorded from '@/components/dashboard/RecentlyRecorded'
 import React from 'react'
 
 const page = async () => {
-  
+
   return (
-    <div className='flex gap-5 flex-wrap items-center justify-center md:justify-start w-full'>
-      <RecentlyRecorded />
-      <OneRepMax />
+    <div className='w-full md:grid md:grid-cols-4 gap-2'>
+      <div className='col-span-3'>
+        <RecentlyRecorded />
+      </div>
+      <div>
+        <OneRepMax />
+      </div>
+
     </div>
 
   )

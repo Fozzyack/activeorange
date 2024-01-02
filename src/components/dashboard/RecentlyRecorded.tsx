@@ -40,7 +40,7 @@ const RecentlyRecorded = async () => {
         <Fragment >
 
 
-            <div className='items-center p-4 bg-[#1B1F38] rounded-xl shadow-xl gap-4 flex text-center flex-col'>
+            <div className='items-center p-4 bg-[#1B1F38] rounded-xl shadow-xl gap-4  text-center w-full'>
 
                 {
                     records.error ? <div>
@@ -87,7 +87,7 @@ const RecentlyRecorded = async () => {
                 }
                 {
                     records.data.map((record, index) => (
-                        <div key={index} className='flex flex-col'>
+                        <div key={index} className=' -full'>
                             <h1 className='text-white underline'>{record.name}</h1>
                             <ExerciseChart id={record.id} selectedExercises={null} />
                         </div>
