@@ -11,7 +11,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
     redirect('/api/auth/signin?callbackUrl=/dashboard')
   }
   return (
-      <div className='md:grid md:grid-cols-12 bg-[#151828] min-h-screen md:p-16 gap-10 max-w-screen text-[12px] md:text-base'>
+      <div className='md:grid md:grid-cols-12 bg-[#151828] min-h-screen md:p-16 gap-10 max-w-screen text-[12px] md:text-[0.8rem]'>
         <div className='col-span-5 lg:col-span-3'>
           <NavbarWrapper />
         </div>
