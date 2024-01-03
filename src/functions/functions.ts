@@ -9,3 +9,15 @@ export function matchWords(w1: string, w2: string) {
     }
     return wordMatch
 }
+
+export const getLiftData = async (id: number) => {
+    const res = await fetch(`/api/weights/exercises/chart/${id}`, {
+        method: 'GET'
+    })
+    if (!res.ok) {
+        throw new Error('There was an Error fetching exercise Data')
+    }
+
+    const data = await res.json()
+    return data
+}

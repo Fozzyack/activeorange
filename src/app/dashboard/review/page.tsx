@@ -1,6 +1,7 @@
 'use client'
 import ExerciseChart from '@/components/Review/ExerciseChart';
 import ExerciseTable from '@/components/Review/ExerciseTable'
+import PastPerformance from '@/components/Review/PastPerformance';
 import React from 'react'
 
 interface Exercise {
@@ -40,6 +41,7 @@ const Page = () => {
                     <div className='w-full' key={index}>
                         <h1 className='text-orange-600 font-bold text-2xl text-center'>{exercise.name}</h1>
                         <ExerciseChart id={exercise.id} selectedExercises={selectedExercises}/>
+                        <PastPerformance id={exercise.id} selectedExercises={selectedExercises}/>
                     </div>
                 ))
             }

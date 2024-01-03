@@ -10,7 +10,6 @@ import {
     Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { useRouter } from "next/navigation";
 // Register ChartJS components using ChartJS.register
 ChartJS.register(
     CategoryScale,
@@ -21,34 +20,14 @@ ChartJS.register(
     Legend
 );
 import React from "react";
+import { getLiftData } from "@/functions/functions";
+import { exerciseData, exercises } from "@/types/types";
 
-interface data {
-    weight: string,
-    sets: number,
-    reps: number,
-    rpe: number,
-    log: string,
-    date_recorded: string
-}
+const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercises: exercises | null }) => {
+    const [data, setData] = React.useState<exerciseData[]>([])
 
-interface Exercise {
-    name: string;
-    id: number;
-}
-const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercises: Exercise[] | null }) => {
-    const router = useRouter()
-    const [data, setData] = React.useState<data[]>([])
-    const getData = async () => {
-        const res = await fetch(`/api/weights/exercises/chart/${id}`, {
-            method: 'GET'
-        })
-        if (!res.ok) {
-            throw new Error('There was an Error fetching exercise Data')
-        }
-
-        const data = await res.json()
-        setData(data)
-        router.refresh()
+    async function getData() {
+        setData(await getLiftData(id))
     }
 
     if (selectedExercises) {
@@ -97,7 +76,7 @@ const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercise
                 />
             </div> */}
             <div>
-                <h4 className="text-center text-white font-bold text-lg py-3 ">Sets Reps And RPE Graph</h4>
+                <h4 className="text-center text-white font-bold text-lg py-3 ">Performance Graph</h4>
                 <Line
                     className=" p-1 rounded-xl bg-[#1B1F38]"
                     options={{
@@ -108,8 +87,8 @@ const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercise
                                 from: 1,
                                 to: 0,
                                 loop: true
-                              },
-                        
+                            },
+
                         },
                     }}
                     data={{

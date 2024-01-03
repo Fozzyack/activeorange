@@ -13,3 +13,18 @@ export type records = {
     name: string;
     exerciseId: number;
 }[]
+
+export type exercises = {
+    name: string,
+    id: number
+}[]
+
+export type exerciseData = {
+        weight: string,
+        sets: number,
+        reps: number,
+        rpe: number,
+        log: string,
+        date_recorded: string
+
+}
