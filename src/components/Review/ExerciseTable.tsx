@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { matchWords } from '@/functions/functions';
 import { records } from '@/types/types';
 
@@ -82,7 +82,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
         getRecords()
     }, [])
     return (
-        <div className='text-white'>
+        <Fragment>
             <h3 className='underline text-[2rem] font-bold my-2'>Recorded Exercises</h3>
             <input className='text-black p-2 rounded-xl mt-3' type="text" onChange={(e) => handleSearch(e)} />
             <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
@@ -98,7 +98,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                         })
                         .map((record, index) => (
 
-                            <div className='border-slate-400 p-4 rounded-xl shadow-xl border' key={index} >
+                            <div className='border-slate-400 p-4 rounded-xl shadow-xl border bg-[#1B1F38]' key={index} >
                                 <div className='flex flex-col text-center items-center justify-center'>
                                     <h3>
                                         {record.name}
@@ -114,7 +114,7 @@ const ExerciseTable = ({ selectedExercises, setSelectedExercises }: ExerciseComp
                         ))
                 }
             </div>
-        </div >
+        </Fragment >
     )
 }
 

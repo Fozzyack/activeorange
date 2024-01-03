@@ -19,7 +19,7 @@ const Page = () => {
     return (
         <div className='flex flex-col gap-4 w-full'>
             <h1 className='text-4xl text-white underline'>Select Exercise to View</h1>
-            <div className=' p-6 rounded-xl bg-[#1B1F38]  shadow-xl'>
+            <div className=' p-6 text-white'>
                 <ExerciseTable setSelectedExercises={setSelectedExercises} selectedExercises={selectedExercises} />
             </div>
             <div className=' align-start justify-items-start gap-4 flex flex-row flex-wrap'>
