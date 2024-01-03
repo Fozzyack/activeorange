@@ -35,7 +35,7 @@ const PastPerformance = ({ id, selectedExercises }: { id: number,  selectedExerc
                 <tbody>
                     {
                         data.map((data, index) => (
-                            <tr>
+                            <tr key={index}>
                                 <td className='border border-slate-600'>{data.weight}</td>
                                 <td className='border border-slate-600'>{data.sets}</td>
                                 <td className='border border-slate-600'>{data.reps}</td>
