@@ -3,13 +3,10 @@ import Link from 'next/link'
 import React from 'react'
 import { motion } from 'framer-motion'
 import { matchWords } from '@/functions/functions'
+import { exercises2 } from '@/types/types'
 const ExerciseList = () => {
 
-    const [exercises, setExercises] = React.useState([{
-        e_name: '',
-        m_name: '',
-        id: null
-    }])
+    const [exercises, setExercises] = React.useState<exercises2>([])
     const [tableIndex, setTableIndex] = React.useState({
         start: 0,
         finish: 10
@@ -24,7 +21,7 @@ const ExerciseList = () => {
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setShowRows('hidden')
-        
+
         setTimeout(() => {
             setSearch(e.target.value)
             setTableIndex(previousState => { return { ...previousState, start: 0, finish: 10 } })
@@ -63,7 +60,7 @@ const ExerciseList = () => {
     const getExercises = async () => {
         const res = await fetch('/api/weights/exercises/getexercises', {
             method: 'GET',
-            next: {revalidate: 1800}
+            next: { revalidate: 1800 }
         })
         if (!res.ok) {
             throw new Error('There was an error getting the exercise List')
@@ -78,6 +75,7 @@ const ExerciseList = () => {
         getExercises()
     }, [])
 
+    console.log(exercises)
     return (
         <div className='text-white'>
             <div className='flex flex-row gap-4 mb-5 w-full flex-wrap'>
@@ -90,7 +88,7 @@ const ExerciseList = () => {
                     </button> : null
                 }
                 {
-                    tableIndex.finish <= exercises.filter((exercise) => exercise.e_name.toLowerCase().includes(search.toLowerCase()) || exercise.m_name.toLowerCase().includes(search.toLowerCase())).length - 1 ? <button className='p-4 items-center justify-center rounded-xl bg-orange-600' onClick={() => { goForward() }}><svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                    tableIndex.finish <= exercises.filter((exercise) => matchWords(exercise.e_name, search) || matchWords(exercise.m_name.join(''), search)).length - 1 ? <button className='p-4 items-center justify-center rounded-xl bg-orange-600' onClick={() => { goForward() }}><svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
                     </svg></button> : null
                 }
@@ -102,26 +100,35 @@ const ExerciseList = () => {
                 <thead>
                     <tr>
                         <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Exercise Name</th>
-                        <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Muscle Group</th>
+                        <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Muscle Groups</th>
                         <th className='table-cell border border-slate-600 md:p-4 bg-[#DD8233]'>Select</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        exercises.filter((exercise) => matchWords(exercise.e_name, search) || matchWords(exercise.m_name, search))
-                        .slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
-                            <motion.tr key={index}
-                                initial={{ opacity: 0 }}
-                                animate={showRows}
-                                variants={tr}
-                                transition={{ delay: 0.1 * index }}
-                                className='text-white'>
-                                <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
-                                <td className='table-cell border border-slate-700 p-2'>{exercise.m_name}</td>
-                                <td className='border border-slate-700 p-2 justify-center items-center'>
-                                    <Link className='bg-red-500 p-2 rounded-lg' href={`/dashboard/record/${exercise.id}`}>Select</Link></td>
-                            </motion.tr>
-                        ))
+                        exercises.filter((exercise) => matchWords(exercise.e_name, search) || matchWords(exercise.m_name.join(''), search))
+                            .slice(tableIndex.start, tableIndex.finish).map((exercise, index) => (
+                                <motion.tr key={index}
+                                    initial={{ opacity: 0 }}
+                                    animate={showRows}
+                                    variants={tr}
+                                    transition={{ delay: 0.1 * index }}
+                                    className='text-white'>
+                                    <td className='table-cell border border-slate-700 p-2'>{exercise.e_name}</td>
+                                    <td className='table-cell border border-slate-700 p-2'>{
+                                        <div className='flex text-center flex-col'>
+                                            {
+                                                exercise.m_name.map((name, index) => (
+                                                    <p key={index}>{name}</p>
+                                                ))
+                                            }
+                                        </div>
+
+                                    }</td>
+                                    <td className='border border-slate-700 p-2 justify-center items-center'>
+                                        <Link className='bg-red-500 p-2 rounded-lg' href={`/dashboard/record/${exercise.id}`}>Select</Link></td>
+                                </motion.tr>
+                            ))
                     }
                 </tbody>
             </table>

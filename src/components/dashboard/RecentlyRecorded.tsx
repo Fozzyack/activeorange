@@ -56,7 +56,7 @@ const RecentlyRecorded = async () => {
 
                                 <h1 className='bg-[#F87D12] rounded-full text-white px-4 py-3 shadow-xl text-center'> Recently Recorded</h1>
                                 <div className='w-full overflow-auto'>
-                                    <table className='text-white table-auto bg-slate-800 border-collapse border-spacing-2 w-full rounded-3xl b'>
+                                    <table className='text-white table-auto bg-slate-800 border-collapse border-spacing-2 w-full rounded-3xl'>
                                         <thead>
                                             <tr>
                                                 <th className='p-3 border-r border-slate-400'>Name</th>
@@ -71,10 +71,10 @@ const RecentlyRecorded = async () => {
                                                 records.data.map((record, index) => (
                                                     <tr key={index}>
                                                         <td className='p-1 border-r border-t border-slate-400 '>{record.name}</td>
-                                                        <td className='p-1  border border-slate-400' >{record.sets}</td>
-                                                        <td className='p-1  border border-slate-400'>{record.reps}</td>
-                                                        <td className='p-1  border border-slate-400'>{record.weight}</td>
-                                                        <td className='p-1  border-l border-t border-slate-400'>{record.rpe}</td>
+                                                        <td className='p-1  border-t border-r border-slate-400' >{record.sets}</td>
+                                                        <td className='p-1  border-t border-r border-slate-400'>{record.reps}</td>
+                                                        <td className='p-1  border-t border-r border-slate-400'>{record.weight}</td>
+                                                        <td className='p-1  border-t border-slate-400'>{record.rpe}</td>
                                                     </tr>
 
                                                 ))
@@ -84,15 +84,6 @@ const RecentlyRecorded = async () => {
                                 </div>
 
                             </div>
-                }
-                {
-                    records.data.map((record, index) => (
-                        <div key={index} className=' -full'>
-                            <h1 className='text-white underline'>{record.name}</h1>
-                            <ExerciseChart id={record.id} selectedExercises={null} />
-                        </div>
-                    ))
-
                 }
 
 

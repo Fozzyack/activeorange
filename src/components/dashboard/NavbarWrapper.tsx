@@ -13,7 +13,7 @@ const NavbarWrapper = () => {
             <div className='hidden md:block'>
                 <Navbar />
             </div>
-            <div className='fixed md:hidden w-full bg-[#1A1D24] bg-opacity-95 p-3'>
+            <div className='fixed md:hidden w-full bg-[#1A1D24] bg-opacity-95 p-3 z-20'>
                 {
                     showNav ?
                         <div className='fixed z-60 opacity-100'>
