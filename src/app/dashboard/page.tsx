@@ -22,6 +22,7 @@ const page = async () => {
           <DisplayMEV name={'Glutes'} />
           <DisplayMEV name={'Hamstrings'} />
           <DisplayMEV name={'Calves'} />
+          <DisplayMEV name={'Side Delts'} />
           <DisplayMEV name={'Rear Delts'} />
         </div>
       </div>
