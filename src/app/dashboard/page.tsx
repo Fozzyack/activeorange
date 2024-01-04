@@ -11,9 +11,9 @@ const page = async () => {
       <OneRepMax />
       <div className='text-center text-white '>
         <h1 className='my-3'>MEVs</h1>
-        <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className='w-full flex flex-row flex-wrap gap-4 items-center justify-center'>
           <DisplayMEV name={'Back'} />
-          <DisplayMEV name={'Bicep'} />
+          <DisplayMEV name={'Biceps'} />
           <DisplayMEV name={'Traps'} />
           <DisplayMEV name={'Chest'} />
           <DisplayMEV name={'Triceps'} />
@@ -21,7 +21,6 @@ const page = async () => {
           <DisplayMEV name={'Glutes'} />
           <DisplayMEV name={'Hamstrings'} />
           <DisplayMEV name={'Calves'} />
-          <DisplayMEV name={'Front Delts'} />
           <DisplayMEV name={'Rear Delts'} />
         </div>
       </div>

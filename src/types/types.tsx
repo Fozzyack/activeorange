@@ -19,6 +19,12 @@ export type exercises = {
     id: number
 }[]
 
+export type exercises2 = {
+    e_name: string,
+    m_name: string[]
+    id: number
+}[]
+
 export type exerciseData = {
         weight: string,
         sets: number,
