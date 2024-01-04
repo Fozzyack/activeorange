@@ -10,7 +10,8 @@ const page = async () => {
       <RecentlyRecorded />
       <OneRepMax />
       <div className='text-center text-white '>
-        <h1 className='my-3'>MEVs</h1>
+        <h1 className='mt-3'>MEVs</h1>
+        <p className='text-slate-600 my-3'>The Minimum amount of Volume Required</p>
         <div className='w-full flex flex-row flex-wrap gap-4 items-center justify-center'>
           <DisplayMEV name={'Back'} />
           <DisplayMEV name={'Biceps'} />
