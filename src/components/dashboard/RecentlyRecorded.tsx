@@ -40,7 +40,7 @@ const RecentlyRecorded = async () => {
         <Fragment >
 
 
-            <div className='items-center p-4 bg-[#1B1F38] rounded-xl shadow-xl gap-4  text-center w-full'>
+            <div className='items-center p-4 bg-[#1B1F38] rounded-xl shadow-xl gap-4  text-center flex justify-center max-w-screen overflow-hidden'>
 
                 {
                     records.error ? <div>
@@ -51,19 +51,19 @@ const RecentlyRecorded = async () => {
                                 <h1 className=''>Record Something to display it!</h1>
                             </div>
                             :
-                            <div className='flex flex-col gap-4 w-full'>
+                            <div className='flex flex-col gap-4 items-center w-full'>
 
 
                                 <h1 className='bg-[#F87D12] rounded-full text-white px-4 py-3 shadow-xl text-center'> Recently Recorded</h1>
-                                <div className='w-full overflow-auto'>
-                                    <table className='text-white table-auto bg-slate-800 border-collapse border-spacing-2 w-full rounded-3xl'>
+                                <div className='w-full'>
+                                    <table className='text-white table-auto border-collapse border-spacing-2 w-full border'>
                                         <thead>
                                             <tr>
-                                                <th className='p-3 border-r border-slate-400'>Name</th>
-                                                <th className='p-3 border-r border-slate-400'>Sets</th>
-                                                <th className='p-3 border-r border-slate-400'>Reps</th>
-                                                <th className='p-3 border-r border-slate-400'>Weight</th>
-                                                <th className='p-3 border-l border-slate-400'>RPE</th>
+                                                <th className='px-1 md:p-3 border-r border-slate-400'>Name</th>
+                                                <th className='px-1 md:p-3 border-r border-slate-400'>Sets</th>
+                                                <th className='px-1 md:p-3 border-r border-slate-400'>Reps</th>
+                                                <th className='px-1 md:p-3 border-r border-slate-400'>Weight</th>
+                                                <th className='px-1 md:p-3 border-l border-slate-400'>RPE</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,7 +73,7 @@ const RecentlyRecorded = async () => {
                                                         <td className='p-1 border-r border-t border-slate-400 '>{record.name}</td>
                                                         <td className='p-1  border-t border-r border-slate-400' >{record.sets}</td>
                                                         <td className='p-1  border-t border-r border-slate-400'>{record.reps}</td>
-                                                        <td className='p-1  border-t border-r border-slate-400'>{record.weight}</td>
+                                                        <td className='p-1  border-t border-r border-slate-400'>{record.weight} kg</td>
                                                         <td className='p-1  border-t border-slate-400'>{record.rpe}</td>
                                                     </tr>
 

@@ -87,7 +87,7 @@ const FindExercise = ({ records }: { records: records }) => {
                                 </div>
                                 <div className='flex flex-col p-1 items-center border border-slate-600 rounded-lg'>
                                     <p>Weight:</p>
-                                    <p>{record.weight}</p>
+                                    <p>{record.weight}kg</p>
                                 </div>
                                 <div className='flex flex-col p-1 items-center border border-slate-600 rounded-lg'>
                                     <p>RPE:</p>

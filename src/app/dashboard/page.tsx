@@ -7,7 +7,7 @@ import React from 'react'
 const page = async () => {
 
   return (
-    <div className='w-full flex flex-wrap gap-4 justify-center lg:justify-around'>
+    <div className='flex flex-col md:flex-row flex-wrap gap-4 justify-center lg:justify-around'>
       <RecentlyRecorded />
       <OneRepMax />
       <div className='text-center text-white '>

@@ -35,7 +35,7 @@ const FullPastPerformance = () => {
                                 <td className='border md:p-3 py-3'>{record.name}</td>
                                 <td className='border md:p-3 py-3'>{record.sets}</td>
                                 <td className='border md:p-3 py-3'>{record.reps}</td>
-                                <td className='border md:p-3 py-3'>{record.weight}</td>
+                                <td className='border md:p-3 py-3'>{record.weight} kg</td>
                                 <td className='border md:p-3 py-3 hidden md:table-cell'>{record.log}</td>
                                 <td className='border md:p-3 py-3 hidden md:table-cell'>{new Date(record.date_recorded).toLocaleDateString()}</td>
                             </tr>
