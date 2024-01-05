@@ -13,10 +13,10 @@ EXERCISE_MEV_INFO.set('Calves', 7);
 EXERCISE_MEV_INFO.set('Traps', 4);
 
 let EXERCISE_MAV_MIN = new Map<string, number>();
-EXERCISE_MAV_MIN.set('Back', 14);
-EXERCISE_MAV_MIN.set('Quads', 12);
-EXERCISE_MAV_MIN.set('Hamstrings', 8);
-EXERCISE_MAV_MIN.set('Glutes', 8);
+EXERCISE_MAV_MIN.set('Back', 11);
+EXERCISE_MAV_MIN.set('Quads', 9);
+EXERCISE_MAV_MIN.set('Hamstrings', 5);
+EXERCISE_MAV_MIN.set('Glutes', 4);
 EXERCISE_MAV_MIN.set('Chest', 7);
 EXERCISE_MAV_MIN.set('Front Delts', 0);
 EXERCISE_MAV_MIN.set('Side Delts', 9);
