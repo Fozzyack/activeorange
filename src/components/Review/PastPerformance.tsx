@@ -1,6 +1,8 @@
-import { getLiftData } from '@/functions/functions'
+
+import { getLiftData } from '@/functions/fetchfunctions'
 import { exerciseData, exercises } from '@/types/types'
 import React from 'react'
+
 
 const PastPerformance = ({ id, selectedExercises }: { id: number,  selectedExercises: exercises | null }) => {
     const [data, setData] = React.useState<exerciseData[]>([])

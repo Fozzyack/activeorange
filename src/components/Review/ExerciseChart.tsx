@@ -21,8 +21,8 @@ ChartJS.register(
     Title
 );
 import React from "react";
-import { getLiftData } from "@/functions/functions";
 import { exerciseData, exercises } from "@/types/types";
+import { getLiftData } from "@/functions/fetchfunctions";
 
 const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercises: exercises | null }) => {
     const [data, setData] = React.useState<exerciseData[]>([])

@@ -2,7 +2,8 @@
 import React from 'react'
 import CircleProgress from './CircleProgress'
 import { EXERCISE_MEV_INFO } from '@/vars/vars'
-import { getSets } from '@/functions/functions'
+import { getSets } from '@/functions/fetchfunctions'
+
 
 
 

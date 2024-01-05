@@ -1,6 +1,7 @@
 'use client'
 import ExerciseChart from '@/components/Review/ExerciseChart';
 import ExerciseTable from '@/components/Review/ExerciseTable'
+import FullPastPerformance from '@/components/Review/FullPastPerformance';
 import PastPerformance from '@/components/Review/PastPerformance';
 import React from 'react'
 
@@ -45,6 +46,7 @@ const Page = () => {
                     </div>
                 ))
             }
+            <FullPastPerformance />
         </div>
 
     )

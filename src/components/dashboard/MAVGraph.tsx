@@ -1,5 +1,4 @@
 'use client'
-import { getSets } from '@/functions/functions'
 import { exerciseList, EXERCISE_MAV_MIN, EXERCISE_MAV_MAX } from '@/vars/vars'
 import {
     Chart as ChartJS,
@@ -23,6 +22,7 @@ ChartJS.register(
 );
 
 import React from 'react'
+import { getSets } from '@/functions/fetchfunctions';
 
 type Sets = {
     Back: number,
