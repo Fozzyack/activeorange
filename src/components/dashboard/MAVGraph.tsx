@@ -70,15 +70,16 @@ const MAVGraph = () => {
 
     }, [])
 
-    const randomColours = Object.keys(sets).map(() => `rgba(${Math.random() * 255}, ${Math.random() * 255} ,${Math.random() * 255} , 1)`)
-
+    const randomColours = '#fc9803'
+    const randomColours2 = '#f2e557'
     return (
         <div className='w-full'>
             <Bar
+
                 data={{
                     labels: Object.keys(sets),
                     datasets: [{
-                        label: 'Max MEV',
+                        label: 'Max MAV',
                         data: Object.keys(sets).map((key) => {
                             const MAV_MAX = EXERCISE_MAV_MAX.get(key)
                             if (!MAV_MAX) return 0
@@ -90,23 +91,24 @@ const MAVGraph = () => {
                         borderWidth: 5
                     },
                     {
-                        label: 'Min MEV',
+                        label: 'Min MAV',
                         data: Object.keys(sets).map((key) => {
                             const MAV_MIN = EXERCISE_MAV_MIN.get(key)
                             if (!MAV_MIN) return 0
                             if (sets[key] / MAV_MIN * 100 > 100) return 100
                             return sets[key] / MAV_MIN * 100
                         }),
-                        borderColor: randomColours,
-                        backgroundColor: randomColours,
+                        borderColor: randomColours2,
+                        backgroundColor: randomColours2,
                         borderWidth: 5
                     }]
                 }}
                 options={{
+                    responsive: true,
                     scales: {
                         y: {
                             min: 0,
-                            max: 100
+                            max: 100,
                         }
                     }
                 }}
