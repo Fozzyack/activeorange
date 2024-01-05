@@ -1,4 +1,5 @@
 import DisplayMEV from '@/components/dashboard/DisplayMEV'
+import MAVGraph from '@/components/dashboard/MAVGraph'
 import OneRepMax from '@/components/dashboard/OneRepMax'
 import RecentlyRecorded from '@/components/dashboard/RecentlyRecorded'
 import React from 'react'
@@ -26,7 +27,7 @@ const page = async () => {
           <DisplayMEV name={'Rear Delts'} />
         </div>
       </div>
-
+      <MAVGraph />
 
 
     </div>

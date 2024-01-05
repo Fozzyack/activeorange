@@ -1,32 +1,28 @@
 'use client'
-import React, { SetStateAction } from 'react'
+import React from 'react'
 import CircleProgress from './CircleProgress'
-import { EXERCISE_INFO } from '@/vars/vars'
+import { EXERCISE_MEV_INFO } from '@/vars/vars'
+import { getSets } from '@/functions/functions'
 
 
 
-async function getSets(name: string, setMEV : React.Dispatch<SetStateAction<number>>) {
-    
-    const res = await fetch(`/api/weights/getMEV/${name}`, {
-        method: 'GET'
-    })
-    if(!res.ok) {
-        throw new Error('There was an Error Fetching MEV')
-    }
-    setMEV(await res.json())
-}
 
 function getMEV(name: string) {
-    const MEV = EXERCISE_INFO.get(name)
+    const MEV = EXERCISE_MEV_INFO.get(name)
     if (!MEV) return 0
     return MEV
 }
+
 const DisplayMEV = ({ name }: { name: string }) => {
 
     const [sets, setSets] = React.useState(0)
 
     React.useEffect(() => {
-        getSets(name, setSets)
+        async function updateVals() {
+            setSets(await getSets(name))
+        }
+        updateVals()
+        
     })
 
     return (

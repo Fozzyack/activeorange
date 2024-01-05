@@ -1,3 +1,4 @@
+
 export function matchWords(w1: string, w2: string) {
     var wordMatch = true
     var searchWords = w2.split(" ")
@@ -20,4 +21,15 @@ export const getLiftData = async (id: number) => {
 
     const data = await res.json()
     return data
+}
+
+export async function getSets(name: string) {
+
+    const res = await fetch(`/api/weights/getMEV/${name}`, {
+        method: 'GET'
+    })
+    if (!res.ok) {
+        throw new Error('There was an Error Fetching MEV')
+    }
+    return await res.json()
 }

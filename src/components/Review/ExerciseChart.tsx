@@ -17,7 +17,8 @@ ChartJS.register(
     PointElement,
     LineElement,
     Tooltip,
-    Legend
+    Legend,
+    Title
 );
 import React from "react";
 import { getLiftData } from "@/functions/functions";
@@ -79,18 +80,6 @@ const ExerciseChart = ({ id, selectedExercises }: { id: number, selectedExercise
                 <h4 className="text-center text-white font-bold text-lg py-3 ">Performance Graph</h4>
                 <Line
                     className=" p-1 rounded-xl bg-[#1B1F38]"
-                    options={{
-                        animations: {
-                            tension: {
-                                duration: 1000,
-                                easing: 'linear',
-                                from: 1,
-                                to: 0,
-                                loop: true
-                            },
-
-                        },
-                    }}
                     data={{
 
                         labels: data.map(entree => new Date(Date.parse(entree.date_recorded)).toLocaleDateString()),
