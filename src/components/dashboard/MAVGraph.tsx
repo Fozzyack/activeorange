@@ -79,19 +79,21 @@ const MAVGraph = () => {
                 data={{
                     labels: Object.keys(sets),
                     datasets: [{
-                        label: 'Max MAV',
+                        label: '% of Max MAV',
                         data: Object.keys(sets).map((key) => {
+                            const MAV_MIN = EXERCISE_MAV_MIN.get(key)
                             const MAV_MAX = EXERCISE_MAV_MAX.get(key)
-                            if (!MAV_MAX) return 0
-                            if (sets[key] / MAV_MAX * 100 > 100) return 100
-                            return sets[key] / MAV_MAX * 100
+                            if (!MAV_MAX || !MAV_MIN) return 0
+                            const diff = Math.max((sets[key] - MAV_MIN) / (MAV_MAX - MAV_MIN))
+                            if (Math.max(diff, 0) * 100 > 100) return 100
+                            return diff * 100
                         }),
                         borderColor: randomColours,
                         backgroundColor: randomColours,
                         borderWidth: 5
                     },
                     {
-                        label: 'Min MAV',
+                        label: '% of Min MAV',
                         data: Object.keys(sets).map((key) => {
                             const MAV_MIN = EXERCISE_MAV_MIN.get(key)
                             if (!MAV_MIN) return 0
