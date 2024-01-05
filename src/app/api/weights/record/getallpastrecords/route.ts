@@ -12,6 +12,7 @@ export async function GET(req: Request) {
         const sql = `
         SELECT name, weight, sets, reps, rpe, log, date_recorded FROM record_weight rw JOIN exercises_weight ew
         ON rw."exerciseId"=ew.id WHERE rw."userId"=$1
+        ORDER BY date_recorded ASC
         `
         const data = await pool.query(sql, [session.user?.id])
         return Response.json(data.rows)
