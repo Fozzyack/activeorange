@@ -26,8 +26,8 @@ const PastPerformance = ({ id, selectedExercises }: { id: number,  selectedExerc
                 <thead>
                     <tr>
                         <th className='border border-slate-500'>Weight:</th>
-                        <th className='border border-slate-500'>Reps:</th>
                         <th className='border border-slate-500'>Sets:</th>
+                        <th className='border border-slate-500'>Reps:</th>
                         <th className='border border-slate-500'>RPE:</th>
                         <th className='border border-slate-500'>Log:</th>
                     </tr>
