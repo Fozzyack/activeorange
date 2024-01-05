@@ -84,8 +84,8 @@ const MAVGraph = () => {
                             const MAV_MIN = EXERCISE_MAV_MIN.get(key)
                             const MAV_MAX = EXERCISE_MAV_MAX.get(key)
                             if (!MAV_MAX || !MAV_MIN) return 0
-                            const diff = Math.max((sets[key] - MAV_MIN) / (MAV_MAX - MAV_MIN))
-                            if (Math.max(diff, 0) * 100 > 100) return 100
+                            const diff = Math.max((sets[key] - MAV_MIN) / (MAV_MAX - MAV_MIN), 0)
+                            if (diff * 100 > 100) return 100
                             return diff * 100
                         }),
                         borderColor: randomColours,
