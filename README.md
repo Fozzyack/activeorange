@@ -18,6 +18,9 @@ Have only made apps with RESTful APIs. Whilst this app will mostly be RESTful, I
 - [x] Design A main dashboard component
 - [x] Deploy to Vercel
 - [x] Host a postgres database on a VM - budget reasons -- End of Day 4
+- [x] Add MEV (Minimum Effective Volume) to Dashboard
+- [x] Add MAV (Maximum  Adaptive Volume) to Dashboard
+- [ ] Change  MEV to sets/MAV to make it clearer (using % makes it harder to read)
 - [ ] Beautify UI - Add images, Propper buttons and add animations (Spruce up landing page)
 - [ ] Design a workout holder
 
