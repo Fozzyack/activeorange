@@ -23,7 +23,7 @@ const SQL = `SELECT r.sets FROM record_weights r JOIN exercises_weights ew
         ON r."exerciseId"=ew.id JOIN muscle_exercises_weight mew
         ON mew."exerciseId"=ew.id JOIN muscle_group mg
         ON mew."muscleId"=mg.id
-        WHERE r."userId"=$1 AND r.date_recorded > $2 AND r.date_recorded < $3 AND mg.name=$4`
+        WHERE r."userId"=$1 AND r.date_recorded >= $2 AND r.date_recorded <= $3 AND mg.name=$4`
 
 export async function GET(req: Request, { params }: { params: { musclegroup: string } }) {
     try {
